@@ -34,6 +34,8 @@ PostgreSQL/pgvector. Built for low-end Android and metered data (Nigerian contex
 - 📄 [ADR-0001](./docs/adr/0001-vector-store-pgvector-vs-dedicated.md) — pgvector vs. dedicated vector DB
 - 📄 [ADR-0002](./docs/adr/0002-model-and-retrieval-configuration.md) — LLM/embeddings/reranker/index config
 - 🎨 [Brand & Theme](./brand/BRAND.md) — logo concept, colour palette, design tokens
+- 📐 [Project Rules](./CLAUDE.md) — engineering conventions & guardrails
+- 🗂️ [Milestone 2 plan — Ingestion](./docs/milestones/M2-ingestion.md) — task checklist
 
 ## Planned monorepo layout
 
