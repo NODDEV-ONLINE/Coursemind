@@ -1,5 +1,7 @@
 # CourseMind
 
+<img src="./brand/coursemind-brand-concept.png" alt="CourseMind logo — a 'C' fused with an open page, three violet bars for content from your own materials" width="220" />
+
 > A syllabus-bounded, self-testing, citeable AI course tutor.
 
 CourseMind answers student questions **using only a lecturer's own materials**,
@@ -31,6 +33,7 @@ PostgreSQL/pgvector. Built for low-end Android and metered data (Nigerian contex
 - 📄 [Software Design (SDD)](./docs/SDD.md) — architecture, data model, pipelines
 - 📄 [ADR-0001](./docs/adr/0001-vector-store-pgvector-vs-dedicated.md) — pgvector vs. dedicated vector DB
 - 📄 [ADR-0002](./docs/adr/0002-model-and-retrieval-configuration.md) — LLM/embeddings/reranker/index config
+- 🎨 [Brand & Theme](./brand/BRAND.md) — logo concept, colour palette, design tokens
 
 ## Planned monorepo layout
 
