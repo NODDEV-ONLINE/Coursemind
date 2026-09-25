@@ -12,6 +12,7 @@ chunks, alongside plenty of ordinary relational data: users, courses, documents,
 questions, answers, citations, ratings, consents, and evaluation runs.
 
 Constraints that shape this decision:
+
 - **Solo developer**, ~10–12 hrs/week, pilot scale (~60 students, a handful of
   courses, low tens of thousands of chunks — not millions).
 - **Cost-sensitive** (Nigerian pilot on free/low-cost tiers). *(NFR-8)*
@@ -75,12 +76,14 @@ cost-constrained, correctness-focused project.
 
 ### Negative / accepted risk
 
-- Manual index tuning (IVFFlat lists vs. HNSW `m`/`ef_construction`); revisit when
-  data volume is known (open question in [SDD §12](../SDD.md#12-open-technical-questions-mirror-prd-12)).
+- Manual index tuning; **HNSW chosen** (see [ADR-0002 §4](./0002-model-and-retrieval-configuration.md#4-vector-index--hnsw-refines-adr-0001)),
+  with `m`/`ef_construction`/`ef_search` to be tuned once data volume is known.
 - A future multi-institution scale-up may outgrow pgvector.
 
 ## Revisit / exit criteria
+
 Reconsider a dedicated vector DB if any of these hold:
+
 - Chunk count approaches **> ~1–2 million** vectors, or
 - p95 retrieval latency breaches the answer budget *(NFR-1)* after index tuning, or
 - We need advanced hybrid/filtered search that pgvector can't serve efficiently.
@@ -89,6 +92,7 @@ If we migrate, the retrieval module ([SDD §4.4/§6](../SDD.md#6-retrieval--answ
 is the single seam to change, since the API and MCP server both depend on it.
 
 ## Portfolio note
+
 This ADR is intended to double as a LinkedIn carousel: *"pgvector vs Pinecone vs
 Qdrant for a solo developer"* — the honest framing is **consistency and ops over
 raw ANN scale, at the scale I actually have.**

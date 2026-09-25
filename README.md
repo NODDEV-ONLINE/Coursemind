@@ -30,10 +30,11 @@ PostgreSQL/pgvector. Built for low-end Android and metered data (Nigerian contex
 - 📄 [Software Requirements (SRS)](./docs/SRS.md) — FR/NFR/privacy/security requirements
 - 📄 [Software Design (SDD)](./docs/SDD.md) — architecture, data model, pipelines
 - 📄 [ADR-0001](./docs/adr/0001-vector-store-pgvector-vs-dedicated.md) — pgvector vs. dedicated vector DB
+- 📄 [ADR-0002](./docs/adr/0002-model-and-retrieval-configuration.md) — LLM/embeddings/reranker/index config
 
 ## Planned monorepo layout
 
-```
+``` txt
 apps/web            # Next.js (TS) — student chat + lecturer dashboard
 apps/api            # Fastify/NestJS (TS) — auth, retrieval, streaming, cost
 packages/mcp        # MCP server (TS)

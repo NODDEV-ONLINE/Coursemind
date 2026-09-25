@@ -134,8 +134,17 @@ answer only from these, cite them, and tell me how often you're right."
 5. **MCP server (wk 8).**
 6. **Student pilot + observability (wk 9–10).**
 
-## 12. Open questions
-- Which LLM provider(s) for the pilot, and fallback ordering? (Claude default per environment.)
-- Embedding model: hosted vs. self-hosted for cost/latency in Nigeria?
-- How is the initial 50–100 question test set sourced (past exams vs. FAQ vs. synthetic)?
-- Reranker: hosted API vs. local cross-encoder given latency budget?
+## 12. Decisions & open questions
+
+**Resolved** (see [ADR-0002](./adr/0002-model-and-retrieval-configuration.md)):
+
+- **LLM provider** — pluggable via `.env`; Anthropic model is the default placeholder.
+- **Embeddings** — local `bge-small-en-v1.5` (384-dim) on CPU; free, private, configurable.
+- **Vector index** — HNSW (refines [ADR-0001](./adr/0001-vector-store-pgvector-vs-dedicated.md)).
+- **Reranker** — none for MVP; add a local cross-encoder later only if needed.
+- **Test set** — seeded from WAEC past questions (~10 yrs) + off-syllabus items for refusal; general-university scope unchanged.
+
+**Still open:**
+
+- LLM fallback ordering (decide with real cost/latency numbers).
+- Whether pilot course materials fully cover the WAEC test topics (affects accuracy-half of the gate).

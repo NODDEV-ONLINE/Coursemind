@@ -95,7 +95,8 @@ users(id, role, institution_id, created_at)                     -- pseudonymous 
 courses(id, owner_id, title, created_at)
 documents(id, course_id, filename, content_hash, status, pages) -- status: queued|processing|ready|failed (FR-5,FR-6)
 chunks(id, document_id, course_id, page, char_start, char_end, text)
-chunk_embeddings(chunk_id, embedding vector(N))                  -- pgvector; ivfflat/hnsw index (ADR-0001)
+chunk_embeddings(chunk_id, embedding vector(384))               -- pgvector; HNSW index (ADR-0001, ADR-0002)
+embedding_meta(id, embedding_model, dim, created_at)            -- guards against mixed-model reads (ADR-0002)
 questions(id, course_id, student_id, text, created_at, consent_version)  -- retention-bounded (PR-2,PR-4)
 answers(id, question_id, text, refused bool, latency_ms, input_tokens, output_tokens, cost_usd, model)
 answer_citations(answer_id, chunk_id, page, document_id)         -- every claim traceable (FR-11)
@@ -187,8 +188,16 @@ coursemind/
   infra/            # docker-compose, migrations
 ```
 
-## 12. Open technical questions (mirror PRD §12)
-- Embedding model & dimension (affects `vector(N)` + index choice).
-- Reranker: hosted vs. local cross-encoder within the 3 s TTFT budget *(NFR-1)*.
-- pgvector index: IVFFlat vs. HNSW at pilot scale (revisit in ADR when data volume known).
-- LLM provider ordering and fallback policy *(NFR-4)*.
+## 12. Technical decisions & open questions
+
+**Resolved** (see [ADR-0002](./adr/0002-model-and-retrieval-configuration.md)):
+
+- Embedding model & dimension → local `bge-small-en-v1.5`, `vector(384)`.
+- Vector index → HNSW.
+- Reranker → none for MVP; local cross-encoder later if hit-rate is weak.
+- LLM provider → `.env`-configurable, Anthropic default.
+
+**Still open:**
+
+- HNSW `m` / `ef_construction` / `ef_search` tuning (needs real data volume).
+- LLM fallback provider/ordering *(NFR-4)* — decide with cost/latency data.
