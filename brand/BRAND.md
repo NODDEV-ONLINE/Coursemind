@@ -17,20 +17,16 @@ The wordmark pairs **"Course"** (light) with **"Mind"** (violet accent).
 
 ## Assets
 
-Exported from the concept sheet (see resolution note below):
-
 | File | What | Bg | Use |
 | --- | --- | --- | --- |
-| [`app-icon-dark.png`](./app-icon-dark.png) | violet square, white mark | violet | **dark-mode / primary app icon** |
-| [`logo-light.png`](./logo-light.png) | white square, dark mark | white | **light-mode logo** |
 | [`favicon.png`](./favicon.png) | mark only, **transparent bg** | — | **favicon**, browser tab |
-| [`favicon-on-dark.png`](./favicon-on-dark.png) | mark only, on dark | dark | favicon fallback where transparency isn't wanted |
 | [`coursemind-brand-concept.png`](./coursemind-brand-concept.png) | full concept sheet | dark | reference only |
+| _SVG logo set_ | vector marks (dark / light / favicon) | — | **primary** — recreated separately (add paths here) |
 
-> **Resolution note:** these were extracted from the 512-px-wide source sheet, so
-> `app-icon-dark`/`logo-light` are ~114 px and `favicon` is ~43 px. Fine for web/tab
-> use. For app-store icons (≥512 px) and crisp scaling, **recreate the mark as an
-> SVG** (or regenerate at high resolution) — tracked in TODO.
+> **SVG is the primary format.** Vector logos have been recreated; add their file
+> paths to the table above once they live in this folder. The rasters previously
+> extracted from the 512-px sheet were removed in favour of the SVGs — use SVG for
+> the UI, favicon set, and app-store icons so every size stays crisp.
 
 ## Logo usage
 
@@ -139,5 +135,7 @@ the critical path.
 ## TODO
 - [x] Lock exact hex values from the source (measured above).
 - [x] Split favicon + light/dark logo variants into separate files.
-- [ ] Recreate the mark as **SVG** and export hi-res app icons (≥512 px) + full icon set.
+- [x] Recreate the mark as **SVG** (done separately).
+- [ ] Add the SVG logo files to `brand/` and list them in the Assets table.
+- [ ] Generate the favicon set + app icons (≥512 px) from the SVG.
 - [ ] Run WCAG contrast checks on the final tokens once used in `apps/web`.
