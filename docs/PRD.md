@@ -139,7 +139,7 @@ answer only from these, cite them, and tell me how often you're right."
 **Resolved** (see [ADR-0002](./adr/0002-model-and-retrieval-configuration.md)):
 
 - **LLM provider** — pluggable via `.env`; Anthropic model is the default placeholder.
-- **Embeddings** — local `bge-small-en-v1.5` (384-dim) on CPU; free, private, configurable.
+- **Embeddings** — Google `text-embedding-004` (768-dim), free hosted tier; configurable, with a local 768-dim fallback. (Cross-border → disclose per PR-7.)
 - **Vector index** — HNSW (refines [ADR-0001](./adr/0001-vector-store-pgvector-vs-dedicated.md)).
 - **Reranker** — none for MVP; add a local cross-encoder later only if needed.
 - **Test set** — seeded from WAEC past questions (~10 yrs) + off-syllabus items for refusal; general-university scope unchanged.

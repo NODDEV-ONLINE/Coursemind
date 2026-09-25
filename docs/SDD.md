@@ -95,7 +95,7 @@ users(id, role, institution_id, created_at)                     -- pseudonymous 
 courses(id, owner_id, title, created_at)
 documents(id, course_id, filename, content_hash, status, pages) -- status: queued|processing|ready|failed (FR-5,FR-6)
 chunks(id, document_id, course_id, page, char_start, char_end, text)
-chunk_embeddings(chunk_id, embedding vector(384))               -- pgvector; HNSW index (ADR-0001, ADR-0002)
+chunk_embeddings(chunk_id, embedding vector(768))               -- pgvector; HNSW index (ADR-0001, ADR-0002)
 embedding_meta(id, embedding_model, dim, created_at)            -- guards against mixed-model reads (ADR-0002)
 questions(id, course_id, student_id, text, created_at, consent_version)  -- retention-bounded (PR-2,PR-4)
 answers(id, question_id, text, refused bool, latency_ms, input_tokens, output_tokens, cost_usd, model)
@@ -192,7 +192,7 @@ coursemind/
 
 **Resolved** (see [ADR-0002](./adr/0002-model-and-retrieval-configuration.md)):
 
-- Embedding model & dimension → local `bge-small-en-v1.5`, `vector(384)`.
+- Embedding model & dimension → Google `text-embedding-004` (free tier), `vector(768)`.
 - Vector index → HNSW.
 - Reranker → none for MVP; local cross-encoder later if hit-rate is weak.
 - LLM provider → `.env`-configurable, Anthropic default.

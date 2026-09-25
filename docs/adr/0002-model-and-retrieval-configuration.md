@@ -37,16 +37,19 @@ LLM_FALLBACK_MODEL=
 - **Fallback ordering** stays open until real cost/latency numbers exist; the
   interface already supports a secondary provider.
 
-### 2. Embeddings — local, free, `bge-small-en-v1.5` (384-dim) *(FR-4)*
+### 2. Embeddings — Google `text-embedding-004` (768-dim), free hosted tier *(FR-4)*
 
-Run embeddings **locally on CPU** via `fastembed` (ONNX) using
-`BAAI/bge-small-en-v1.5` → **384 dimensions**.
+Use **Google `text-embedding-004`** via the AI Studio free tier → **768 dimensions**.
 
-- **Why local, not hosted:** zero cost, no GPU/server needed, no cross-border data
-  transfer for embedding student/course text (helps the NDPA privacy story, PR-7).
-  "Self-hosted" here means *in-process on CPU*, not a rented server.
-- **Why bge-small:** small, fast on CPU, strong quality for its size; English is
-  sufficient (course materials and WAEC-sourced test questions are English).
+- **Why:** best-quality free option, no local CPU cost during ingestion, and no
+  infra to run. Frees the app container from carrying an embedding model.
+- **Privacy tradeoff (accepted):** course text and (indirectly) query text are sent
+  **cross-border to Google** for embedding. This must be disclosed in the privacy
+  notice per **PR-7**, and factored into the NDPA data-flow description. Prefer
+  embedding *course materials* (lecturer-owned) over raw student PII where possible;
+  apply PII redaction before embedding query text *(PR-8)*.
+- **Quota risk (accepted):** the free tier has rate/volume limits; batch ingestion
+  must handle throttling/retries *(NFR-5)*.
 - **Embedding model is configurable** (`.env`), **but the vector dimension is fixed
   in the schema.** Changing the embedding model = re-embed the whole corpus = a
   migration, *not* a live swap (unlike the LLM). To make swaps safe, store the
@@ -54,20 +57,24 @@ Run embeddings **locally on CPU** via `fastembed` (ONNX) using
   reads.
 
 ```env
-EMBEDDING_PROVIDER=local          # local | google | voyage | jina | openai
-EMBEDDING_MODEL=bge-small-en-v1.5
-EMBEDDING_DIM=384                 # must match the vector(N) column; migration if changed
+EMBEDDING_PROVIDER=google         # google | local | voyage | jina | openai
+EMBEDDING_MODEL=text-embedding-004
+EMBEDDING_DIM=768                 # must match the vector(N) column; migration if changed
+GOOGLE_API_KEY=                   # secret, never committed (SR-4)
 ```
 
 **Alternatives considered (all viable, none chosen for MVP):**
 
 | Option | Dim | Cost | Rejected because |
 | --- | --- | --- | --- |
-| Google `text-embedding-004` (hosted) | 768 | free tier | cross-border data; free tier limits |
+| `bge-small-en-v1.5` (local, fastembed) | 384 | free | no cross-border data, but adds CPU cost + model in-container; lower quality than 004 |
+| `bge-base-en-v1.5` (local) | 768 | free | heavier on CPU than desired at pilot scale |
 | Voyage `voyage-3-lite` (hosted) | 512 | free tier | external dependency, quota risk |
 | Jina v3 (hosted) | 1024 | free tier | external dependency |
 | OpenAI `text-embedding-3-small` | 1536 | paid | costs money; cross-border |
-| `bge-base-en-v1.5` (local) | 768 | free | heavier on CPU than needed at pilot scale |
+
+**Fallback if the free tier is exhausted:** switch `EMBEDDING_PROVIDER=local`
+(`bge-base-en-v1.5`, also 768-dim → no schema migration needed).
 
 ### 3. Reranker — none for MVP; local cross-encoder later if needed *(FR-9)*
 
@@ -107,12 +114,15 @@ to exercise refusal *(FR-12)*.
 
 ## Consequences
 
-- **Positive:** ingestion is unblocked (dim = 384, HNSW); $0 embedding + reranking;
-  privacy improved by keeping embedding local; LLM stays swappable per deployment.
-- **Negative / accepted risk:** embedding-model change requires re-embedding
-  (mitigated by `embedding_meta` guard); local CPU embedding is slower than a GPU
-  service for very large uploads (acceptable at pilot scale, NFR-3); WAEC test set
-  needs manual cleaning effort.
+- **Positive:** ingestion is unblocked (dim = 768, HNSW); $0 embedding (free tier) +
+  $0 reranking; no embedding model to run in-container; LLM stays swappable per
+  deployment; local `bge-base` fallback is also 768-dim, so switching needs no
+  schema migration.
+- **Negative / accepted risk:** hosted embedding sends course/query text
+  cross-border to Google → **must be disclosed (PR-7)** and PII-redacted (PR-8);
+  free-tier quota/rate limits require retry/backoff in ingestion (NFR-5);
+  embedding-model change to a *different dimension* requires re-embedding (mitigated
+  by `embedding_meta` guard); WAEC test set needs manual cleaning effort.
 
 ## Revisit criteria
 - Retrieval hit-rate too low in evaluation → add local reranker (§3).
