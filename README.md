@@ -20,7 +20,7 @@ PostgreSQL/pgvector. Built for low-end Android and metered data (Nigerian contex
 | Milestone | Status |
 | --- | --- |
 | 1. Docs (PRD, SRS, SDD, ADR) | ✅ drafted |
-| 2. Ingestion | ⬜ |
+| 2. Ingestion | 🟡 in progress (Task A scaffold done) |
 | 3. Retrieval + chat UI | ⬜ |
 | 4. Accuracy tests + CI gate | ⬜ |
 | 5. MCP server | ⬜ |

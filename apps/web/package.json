@@ -1,0 +1,19 @@
+{
+  "name": "@coursemind/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "echo \"apps/web is implemented in Milestone 3 (chat UI)\" && exit 0",
+    "dev": "echo \"apps/web is implemented in Milestone 3 (chat UI)\" && exit 0",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@coursemind/config": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.0"
+  }
+}

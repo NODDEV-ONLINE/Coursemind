@@ -19,14 +19,16 @@ The wordmark pairs **"Course"** (light) with **"Mind"** (violet accent).
 
 | File | What | Bg | Use |
 | --- | --- | --- | --- |
-| [`favicon.png`](./favicon.png) | mark only, **transparent bg** | — | **favicon**, browser tab |
+| [`logo-wordmark-dark.jpg`](./logo-wordmark-dark.jpg) | mark + "CourseMind" wordmark | dark | **primary logo** (dark surfaces) |
+| [`app-icon.jpg`](./app-icon.jpg) | violet square, white mark | violet | **primary app icon** (dark-mode) |
+| [`light-mode.jpg`](./light-mode.jpg) | white square, dark mark | white | **light-mode** icon/logo |
+| [`dark-mode.jpg`](./dark-mode.jpg) | mark only, white + violet bars | dark | mark for dark backgrounds |
+| [`favicon.ico`](./favicon.ico) | mark, multi-size | — | **favicon**, browser tab |
 | [`coursemind-brand-concept.png`](./coursemind-brand-concept.png) | full concept sheet | dark | reference only |
-| _SVG logo set_ | vector marks (dark / light / favicon) | — | **primary** — recreated separately (add paths here) |
 
-> **SVG is the primary format.** Vector logos have been recreated; add their file
-> paths to the table above once they live in this folder. The rasters previously
-> extracted from the 512-px sheet were removed in favour of the SVGs — use SVG for
-> the UI, favicon set, and app-store icons so every size stays crisp.
+> **Format note:** current logo files are raster (JPG/ICO). They're fine for web and
+> the favicon. For crisp scaling and app-store icons (≥512 px), an **SVG** master of
+> the mark is still worth producing — tracked in TODO.
 
 ## Logo usage
 
@@ -135,7 +137,6 @@ the critical path.
 ## TODO
 - [x] Lock exact hex values from the source (measured above).
 - [x] Split favicon + light/dark logo variants into separate files.
-- [x] Recreate the mark as **SVG** (done separately).
-- [ ] Add the SVG logo files to `brand/` and list them in the Assets table.
-- [ ] Generate the favicon set + app icons (≥512 px) from the SVG.
+- [x] Add logo variants to `brand/` (wordmark, app icon, light, dark, favicon).
+- [ ] Produce an **SVG** master of the mark for crisp scaling + ≥512 px app icons.
 - [ ] Run WCAG contrast checks on the final tokens once used in `apps/web`.

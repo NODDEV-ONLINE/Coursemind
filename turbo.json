@@ -1,0 +1,40 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "globalDependencies": ["tsconfig.base.json", ".env"],
+  "globalEnv": [
+    "NODE_ENV",
+    "DATABASE_URL",
+    "LLM_PROVIDER",
+    "LLM_MODEL",
+    "LLM_API_KEY",
+    "LLM_BASE_URL",
+    "LLM_FALLBACK_PROVIDER",
+    "LLM_FALLBACK_MODEL",
+    "EMBEDDING_PROVIDER",
+    "EMBEDDING_MODEL",
+    "EMBEDDING_DIM",
+    "GOOGLE_API_KEY",
+    "INGEST_SERVICE_URL"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "typecheck": {
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
+    }
+  }
+}

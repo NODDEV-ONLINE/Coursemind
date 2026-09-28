@@ -27,12 +27,12 @@ rules in §Rules below.
 
 ## Task list
 
-### A. Monorepo scaffold *(foundation)*
-- [ ] A1 — Root `package.json`, pnpm workspace, Turborepo `turbo.json`, `.gitignore`.
-- [ ] A2 — Shared TS config (`tsconfig.base.json`), ESLint + Prettier, strict mode on.
-- [ ] A3 — Directory skeleton per SDD §11: `apps/{web,api}`, `packages/{mcp,retrieval}`, `services/ingest-eval`, `infra/`.
-- [ ] A4 — `.env.example` with placeholders (no secrets): `DATABASE_URL`, `LLM_*`, `EMBEDDING_*`, `GOOGLE_API_KEY`.
-- [ ] A5 — Typed, validated env loader (Zod) shared pattern; fail fast on missing env.
+### A. Monorepo scaffold *(foundation)* — ✅ done
+- [x] A1 — Root `package.json`, pnpm workspace, Turborepo `turbo.json`, `.gitignore`.
+- [x] A2 — Shared TS config (`tsconfig.base.json`), ESLint (flat) + Prettier, strict mode on.
+- [x] A3 — Directory skeleton per SDD §11: `apps/{web,api}`, `packages/{config,mcp,retrieval}`, `services/ingest-eval`, `infra/`.
+- [x] A4 — `.env.example` with placeholders (no secrets): `DATABASE_URL`, `LLM_*`, `EMBEDDING_*`, `GOOGLE_API_KEY`.
+- [x] A5 — Typed, validated env loader (Zod) in `packages/config`; fail fast on missing env (+ tests).
 
 ### B. Database & migrations *(infra)*
 - [ ] B1 — `infra/docker-compose.yml`: Postgres with the `pgvector` extension + a healthcheck.

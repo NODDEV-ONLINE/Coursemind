@@ -1,0 +1,20 @@
+{
+  "name": "@coursemind/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "echo \"apps/api is scaffolded in M2 Task D (NestJS bootstrap)\" && exit 0",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@coursemind/config": "workspace:*",
+    "@coursemind/retrieval": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.0"
+  }
+}
