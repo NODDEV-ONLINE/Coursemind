@@ -20,7 +20,7 @@ PostgreSQL/pgvector. Built for low-end Android and metered data (Nigerian contex
 | Milestone | Status |
 | --- | --- |
 | 1. Docs (PRD, SRS, SDD, ADR) | ✅ drafted |
-| 2. Ingestion | 🟡 in progress (Task A scaffold done) |
+| 2. Ingestion | 🟡 in progress (Tasks A scaffold + B database done) |
 | 3. Retrieval + chat UI | ⬜ |
 | 4. Accuracy tests + CI gate | ⬜ |
 | 5. MCP server | ⬜ |
@@ -33,6 +33,7 @@ PostgreSQL/pgvector. Built for low-end Android and metered data (Nigerian contex
 - 📄 [Software Design (SDD)](./docs/SDD.md) — architecture, data model, pipelines
 - 📄 [ADR-0001](./docs/adr/0001-vector-store-pgvector-vs-dedicated.md) — pgvector vs. dedicated vector DB
 - 📄 [ADR-0002](./docs/adr/0002-model-and-retrieval-configuration.md) — LLM/embeddings/reranker/index config
+- 📄 [ADR-0003](./docs/adr/0003-migration-tooling-node-pg-migrate.md) — migration tooling (node-pg-migrate)
 - 🎨 [Brand & Theme](./brand/BRAND.md) — logo concept, colour palette, design tokens
 - 📐 [Project Rules](./CLAUDE.md) — engineering conventions & guardrails
 - 🗂️ [Milestone 2 plan — Ingestion](./docs/milestones/M2-ingestion.md) — task checklist

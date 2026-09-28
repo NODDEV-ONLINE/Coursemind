@@ -1,0 +1,22 @@
+# CourseMind local infrastructure (M2 Task B).
+# Single Postgres + pgvector datastore (ADR-0001). Bring up with:
+#   docker compose -f infra/docker-compose.yml up -d
+# then apply migrations from the repo root: pnpm migrate
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: coursemind-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-coursemind}
+      POSTGRES_USER: ${POSTGRES_USER:-coursemind}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-coursemind}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-coursemind} -d ${POSTGRES_DB:-coursemind}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped

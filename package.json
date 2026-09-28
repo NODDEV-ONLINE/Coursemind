@@ -15,12 +15,17 @@
     "test": "turbo run test",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,json,md}\"",
-    "start": "turbo start"
+    "start": "turbo start",
+    "migrate": "node-pg-migrate -m infra/migrations up",
+    "migrate:down": "node-pg-migrate -m infra/migrations down",
+    "migrate:create": "node-pg-migrate -m infra/migrations create"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@types/node": "^22.10.0",
     "eslint": "^9.17.0",
+    "node-pg-migrate": "^7.9.0",
+    "pg": "^8.13.0",
     "prettier": "^3.4.0",
     "turbo": "^2.3.0",
     "typescript": "^5.7.0",

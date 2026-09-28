@@ -34,12 +34,12 @@ rules in §Rules below.
 - [x] A4 — `.env.example` with placeholders (no secrets): `DATABASE_URL`, `LLM_*`, `EMBEDDING_*`, `GOOGLE_API_KEY`.
 - [x] A5 — Typed, validated env loader (Zod) in `packages/config`; fail fast on missing env (+ tests).
 
-### B. Database & migrations *(infra)*
-- [ ] B1 — `infra/docker-compose.yml`: Postgres with the `pgvector` extension + a healthcheck.
-- [ ] B2 — Migration tooling chosen and wired (e.g. node-pg-migrate / Prisma / raw SQL — record in an ADR if non-obvious).
-- [ ] B3 — Initial schema migration from SDD §5: `users, courses, documents, chunks, chunk_embeddings, embedding_meta` (+ stubs for later tables).
-- [ ] B4 — `chunk_embeddings.embedding vector(768)`; create the **HNSW** index.
-- [ ] B5 — Seed `embedding_meta` with the active model (`text-embedding-004`, dim 768).
+### B. Database & migrations *(infra)* — ✅ done (verified against real pgvector)
+- [x] B1 — `infra/docker-compose.yml`: Postgres `pgvector/pgvector:pg16` + `pg_isready` healthcheck.
+- [x] B2 — node-pg-migrate wired (root `pnpm migrate`); decision recorded in [ADR-0003](../adr/0003-migration-tooling-node-pg-migrate.md).
+- [x] B3 — Initial schema migration from SDD §5: `users, courses, documents, chunks, chunk_embeddings, embedding_meta` + 8 stub tables.
+- [x] B4 — `chunk_embeddings.embedding vector(768)`; **HNSW** index created (`vector_cosine_ops`, defaults).
+- [x] B5 — `embedding_meta` seeded (`text-embedding-004`, 768) — verified via psql.
 
 ### C. Ingestion service — Python `services/ingest-eval` *(core)*
 - [ ] C1 — FastAPI app skeleton + health endpoint + typed settings from env.
