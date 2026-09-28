@@ -1,0 +1,46 @@
+# Root .dockerignore — applies to the monorepo-wide build context used by the
+# API image (which needs the whole workspace). Keeps node_modules, build output,
+# secrets, and caches out of the image (SR-4: never bake secrets/keys in).
+
+# Dependencies (reinstalled inside the image from the lockfile)
+**/node_modules
+.pnpm-store
+
+# Build output (rebuilt inside the image)
+**/dist
+**/build
+**/.next
+**/out
+**/*.tsbuildinfo
+
+# Turbo cache
+**/.turbo
+
+# Env & secrets — ONLY .env.example may ever enter an image
+.env
+.env.*
+!.env.example
+
+# Python artifacts (the ingest image builds its own venv)
+**/__pycache__
+**/*.py[cod]
+**/.venv
+**/venv
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/*.egg-info
+
+# Local DB volume, VCS, editor, OS, coverage
+infra/pgdata
+.git
+.github
+.idea
+.vscode
+coverage
+**/*.log
+.DS_Store
+
+# Docs / brand assets not needed at runtime
+docs
+brand
