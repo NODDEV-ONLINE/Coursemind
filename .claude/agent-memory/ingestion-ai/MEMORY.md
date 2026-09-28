@@ -1,0 +1,1 @@
+- [M2 ingestion pipeline](project-m2-ingestion-pipeline.md) — C1–C8 + E1–E3 implemented 2026-09-28; exception classes, test approach, psycopg3 vector pattern
