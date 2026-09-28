@@ -33,6 +33,11 @@ export const envSchema = z.object({
 
   // Service wiring
   INGEST_SERVICE_URL: z.string().url().default('http://localhost:8000'),
+
+  // Local filesystem directory the API writes uploaded documents to before
+  // handing the path off to the Python ingest service (M2 Task D). A shared
+  // volume/broker replaces this in a later milestone.
+  UPLOAD_DIR: z.string().default('/tmp/coursemind-uploads'),
 });
 
 export type Env = z.infer<typeof envSchema>;

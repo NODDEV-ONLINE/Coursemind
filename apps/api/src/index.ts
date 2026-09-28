@@ -2,8 +2,7 @@
  * CourseMind API (NestJS) — auth, rate limits, retrieval orchestration, grounded
  * prompt building, streaming, cost telemetry (SDD §4.2).
  *
- * Bootstrapped in Milestone 2 Task D (upload + status slice), then expanded in
- * later milestones. Placeholder for now so the workspace resolves.
+ * The runnable entrypoint is `main.ts`. This barrel re-exports the root module so
+ * the workspace has a stable public surface.
  */
-
-export const API_PLACEHOLDER = true;
+export { AppModule } from './app.module.js';
