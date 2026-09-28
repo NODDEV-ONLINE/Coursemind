@@ -42,14 +42,14 @@ rules in §Rules below.
 - [x] B5 — `embedding_meta` seeded (`text-embedding-004`, 768) — verified via psql.
 
 ### C. Ingestion service — Python `services/ingest-eval` *(core)*
-- [ ] C1 — FastAPI app skeleton + health endpoint + typed settings from env.
-- [ ] C2 — **Parse:** PyMuPDF for PDF, python-pptx for PPTX; preserve page/slide numbers + text order (FR-2).
-- [ ] C3 — **Chunk:** fixed-size w/ overlap default; attach `document_id, page/slide, char_start, char_end` (FR-3).
-- [ ] C4 — **Content hash** per document; skip/replace on re-upload (idempotent, FR-6).
-- [ ] C5 — **Embed:** Google `text-embedding-004`; batch + retry/backoff for free-tier quota (FR-4, NFR-5).
-- [ ] C6 — **Store:** write chunks + embeddings in a transaction; verify dim == `embedding_meta.dim`.
-- [ ] C7 — Status transitions + failure reason on `documents.status` (FR-5).
-- [ ] C8 — Runnable as an internal HTTP API **and** a CLI (CI-friendly).
+- [x] C1 — FastAPI app skeleton + health endpoint + typed settings from env.
+- [x] C2 — **Parse:** PyMuPDF for PDF, python-pptx for PPTX; preserve page/slide numbers + text order (FR-2).
+- [x] C3 — **Chunk:** fixed-size w/ overlap default; attach `document_id, page/slide, char_start, char_end` (FR-3).
+- [x] C4 — **Content hash** per document; skip/replace on re-upload (idempotent, FR-6).
+- [x] C5 — **Embed:** Google `text-embedding-004`; batch + retry/backoff for free-tier quota (FR-4, NFR-5).
+- [x] C6 — **Store:** write chunks + embeddings in a transaction; verify dim == `embedding_meta.dim`.
+- [x] C7 — Status transitions + failure reason on `documents.status` (FR-5).
+- [x] C8 — Runnable as an internal HTTP API **and** a CLI (CI-friendly).
 
 ### D. Upload trigger + status — TS `apps/api` (NestJS) *(thin slice)*
 - [ ] D1 — NestJS app bootstrap + config module (typed env) + health route.
@@ -58,9 +58,9 @@ rules in §Rules below.
 - [ ] D4 — Hand-off to the Python service (direct HTTP call for MVP; a broker is later scope).
 
 ### E. Tests & CI *(gate)*
-- [ ] E1 — Sample fixtures: a small PDF and a small PPTX in the repo.
-- [ ] E2 — Python test: parse→chunk→embed→store; assert chunk count, metadata, dim.
-- [ ] E3 — Idempotency test: re-ingest same file → no duplicate chunks.
+- [x] E1 — Sample fixtures: a small PDF and a small PPTX in the repo.
+- [x] E2 — Python test: parse→chunk→embed→store; assert chunk count, metadata, dim.
+- [x] E3 — Idempotency test: re-ingest same file → no duplicate chunks.
 - [ ] E4 — API test: upload → status reaches `ready`.
 - [ ] E5 — GitHub Actions: install, lint, type-check, run Python + TS tests on PR (NFR-11).
 - [ ] E6 — Update README: one-command local run (NFR-12).
