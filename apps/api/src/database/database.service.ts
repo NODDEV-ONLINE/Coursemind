@@ -35,6 +35,16 @@ export class DatabaseService implements OnModuleDestroy {
     return result.rows;
   }
 
+  /**
+   * The underlying `pg.Pool`. Exposed for `@coursemind/retrieval`'s
+   * {@link retrieveChunks}, which takes a Pool directly (course scoping is enforced
+   * inside retrieval via a bound `course_id` param — SR-2). Prefer {@link query}
+   * for app SQL; this is only for the shared retrieval client.
+   */
+  getPool(): Pool {
+    return this.pool;
+  }
+
   /** Close the pool cleanly on shutdown so connections are not leaked. */
   async onModuleDestroy(): Promise<void> {
     await this.pool.end();

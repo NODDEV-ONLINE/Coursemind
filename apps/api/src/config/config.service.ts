@@ -35,6 +35,41 @@ export class ConfigService {
     return this.env.UPLOAD_DIR;
   }
 
+  /** Top-K chunks to retrieve per question (ADR-0004; default 5). */
+  get retrievalTopK(): number {
+    return this.env.RETRIEVAL_TOP_K;
+  }
+
+  /** Max cosine distance for the best hit before we refuse (FR-12; default 0.35). */
+  get retrievalScoreThreshold(): number {
+    return this.env.RETRIEVAL_SCORE_THRESHOLD;
+  }
+
+  /**
+   * LLM provider selection + credentials (ADR-0002 §1). Secrets come from env
+   * only (SR-4); never hardcode keys. `fallback` is optional secondary wiring for
+   * NFR-4 — undefined when `LLM_FALLBACK_PROVIDER`/`LLM_FALLBACK_MODEL` are unset.
+   */
+  get llm(): {
+    provider: Env['LLM_PROVIDER'];
+    model: string;
+    apiKey: string | undefined;
+    baseUrl: string | undefined;
+    fallback: { provider: string; model: string } | undefined;
+  } {
+    const fallback =
+      this.env.LLM_FALLBACK_PROVIDER && this.env.LLM_FALLBACK_MODEL
+        ? { provider: this.env.LLM_FALLBACK_PROVIDER, model: this.env.LLM_FALLBACK_MODEL }
+        : undefined;
+    return {
+      provider: this.env.LLM_PROVIDER,
+      model: this.env.LLM_MODEL,
+      apiKey: this.env.LLM_API_KEY,
+      baseUrl: this.env.LLM_BASE_URL,
+      fallback,
+    };
+  }
+
   /**
    * HTTP listen port. `PORT` is intentionally not part of the shared config
    * schema (it is a process-level concern, not a CourseMind domain setting), so
