@@ -68,6 +68,7 @@ grounded prompt construction, streaming, model switching/fallback, cost/telemetr
   - `POST /courses/:id/ask` → SSE stream of answer + citations *(FR-8..FR-14)*
   - `POST /courses` / `POST /courses/:id/documents` (upload → enqueue ingest) *(FR-1)*
   - `GET  /courses/:id/status` *(FR-5)*
+  - `GET  /courses/:id/chunks/:chunkId` → `{ chunk_id, document_id, filename, page, text }` — cited passage for the source viewer; course-scoped, unknown/other-course chunk → 404 *(FR-15, SR-2)*
   - `GET  /courses/:id/accuracy` *(FR-21)*
   - `POST /answers/:id/rating` *(FR-16)*
 - Treats retrieved document text as untrusted; injection-resistant prompt layout *(SR-3)*.

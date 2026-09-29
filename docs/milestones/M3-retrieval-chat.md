@@ -84,6 +84,7 @@ no reranker for MVP; HNSW).
 - [ ] C1 — Next.js (App Router) scaffold + Tailwind wired to brand tokens (`brand/BRAND.md`).
 - [ ] C2 — Student chat page: ask box + streamed answer render (consumes the SSE) (FR-13).
 - [ ] C3 — Inline citations + source viewer (open the cited page/slide passage) (FR-11, FR-15).
+  - Backend ready: `GET /courses/:id/chunks/:chunkId` returns `{ chunk_id, document_id, filename, page, text }` (course-scoped, SR-2). UI still pending.
 - [ ] C4 — Refusal state styled distinctly (uses `--refused`; icon + label, not colour alone).
 - [ ] C5 — Low-data mode toggle (compact, asset-light) (FR-14) + responsive on low-end Android.
 - [ ] C6 — Answer rating (thumbs up/down); down-votes logged (FR-16).
