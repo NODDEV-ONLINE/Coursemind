@@ -1,0 +1,2 @@
+- [Web identity proxy](project_web-identity-proxy.md) — web proxies API calls with server-only DEMO_USER_ID; stopgap until student auth
+- [Web token + contract gaps](project_web-token-gaps.md) — canvas colours/radii/sizes missing from BRAND.md; citations lack filenames

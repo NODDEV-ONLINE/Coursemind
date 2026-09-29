@@ -1,0 +1,162 @@
+@import 'tailwindcss';
+
+/*
+ * CourseMind design tokens.
+ *
+ * 1. Brand tokens — copied verbatim from brand/BRAND.md ("Design tokens"). BRAND.md
+ *    is the source of truth: change it there first, then here.
+ * 2. Canvas extensions — values the v1 design comps (docs/design/web-app) use that
+ *    BRAND.md does not define yet. They are named here so components never hardcode
+ *    raw values; each is flagged for brand review (see M3 follow-ups).
+ */
+:root {
+  /* 1. brand/BRAND.md */
+  --bg: #090e19;
+  --ink: #090e19;
+  --surface: #12172a;
+  --border: #2d304f;
+  --text: #f4f5f6;
+  --text-muted: #979ea9;
+  --accent-300: #cec7fb;
+  --accent-400: #9b85f9;
+  --accent-500: #6c51f7;
+  --accent-600: #5a3fe0;
+  --accent-700: #4a30c6;
+  --cited: #6c51f7;
+  --refused: #f59e0b;
+  --error: #ef4444;
+
+  /* 2. Canvas extensions (NOT yet in BRAND.md — flagged) */
+  --surface-raised: #262a45; /* user bubble, disabled send, meter track */
+  --surface-sunken: #0e1322; /* consent panel */
+  --skeleton: #1c2138; /* loading placeholders */
+  --on-accent: #ffffff; /* text/icons on accent-500 fills */
+  --refused-surface: #17140c; /* refusal card fill */
+  --refused-text: #fcd58a; /* refusal label on dark (AA on refused-surface) */
+  --error-surface: #1a0e12; /* error card fill */
+  --error-text: #fca5a5; /* error label on dark (AA on error-surface) */
+  --scrim: rgb(4 6 12 / 0.72); /* modal backdrop */
+
+  color-scheme: dark;
+}
+
+/* Replace Tailwind's default palette: only brand tokens are available as utilities. */
+@theme {
+  --color-*: initial;
+  --font-*: initial;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-skeleton: var(--skeleton);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent-300: var(--accent-300);
+  --color-accent-400: var(--accent-400);
+  --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
+  --color-accent-700: var(--accent-700);
+  --color-on-accent: var(--on-accent);
+  --color-cited: var(--cited);
+  --color-refused: var(--refused);
+  --color-refused-surface: var(--refused-surface);
+  --color-refused-text: var(--refused-text);
+  --color-error: var(--error);
+  --color-error-surface: var(--error-surface);
+  --color-error-text: var(--error-text);
+  --color-scrim: var(--scrim);
+
+  /* Headings: Space Grotesk via next/font (variable set in layout.tsx). Body: system UI
+     so there is no body-font download at all (FR-14). */
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Source passages read as a document (system serif — no download). */
+  --font-passage: Georgia, 'Times New Roman', serif;
+
+  /* Type sizes the comps use that Tailwind's default scale lacks (flagged: BRAND.md
+     has no type scale yet). */
+  --text-2xs: 0.6875rem; /* 11px — timestamps */
+  --text-2xs--line-height: 1.4;
+  --text-meta: 0.8125rem; /* 13px — secondary UI text */
+  --text-meta--line-height: 1.45;
+  --text-body: 0.9375rem; /* 15px — chat body */
+  --text-body--line-height: 1.6;
+  --text-display: 1.625rem; /* 26px — empty-state heading */
+  --text-display--line-height: 1.15;
+
+  /* Radii used by the comps that Tailwind's default scale lacks (flagged). */
+  --radius-control: 10px;
+  --radius-card: 14px;
+  --radius-sheet: 20px;
+}
+
+@layer base {
+  html,
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: var(--accent-300);
+  }
+
+  a:hover {
+    color: var(--text);
+  }
+
+  ::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+
+  /* Visible focus for keyboard users everywhere (NFR-9, WCAG 2.4.7). */
+  :focus-visible {
+    outline: 2px solid var(--accent-300);
+    outline-offset: 2px;
+  }
+
+  /* Low-data mode: skip the heading webfont entirely (set before paint in layout). */
+  html[data-low-data='1'] .font-display {
+    font-family: system-ui, sans-serif;
+  }
+}
+
+/* Respect reduced motion (NFR-9): kill animation, transitions and smooth scroll. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@utility animate-caret {
+  animation: caret-blink 1s steps(1) infinite;
+}

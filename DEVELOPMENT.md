@@ -40,6 +40,17 @@ docker build -t coursemind-ingest-eval services/ingest-eval
 docker build -t coursemind-api -f apps/api/Dockerfile .   # context = repo root (monorepo-aware)
 ```
 
+## Run the student chat (apps/web)
+
+```bash
+# in .env (repo root): API_URL=http://localhost:3000 and DEMO_USER_ID=<course-owner uuid>
+pnpm --filter @coursemind/web dev     # http://localhost:3001/c/<courseId>
+```
+
+The browser only calls the web app's own `/api/*` route handlers; they proxy to
+`API_URL` and add `X-User-Id` server-side, so `DEMO_USER_ID` never reaches the
+client (never give it a `NEXT_PUBLIC_` prefix). Student auth replaces it later.
+
 ## CI
 
 `.github/workflows/ci.yml` runs two parallel jobs on every PR to `dev`/`master`
