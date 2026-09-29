@@ -20,6 +20,7 @@ import { IngestClientService } from '../ingest/ingest-client.service.js';
 import { ZodValidationPipe } from '../validation/zod-validation.pipe.js';
 import {
   CoursesService,
+  type ChunkPassageRecord,
   type CourseRecord,
   type DocumentStatusRecord,
   type QueuedDocument,
@@ -128,6 +129,24 @@ export class CoursesController {
     await this.courses.assertOwnership(courseId, ownerId);
     const documents = await this.courses.listDocumentStatus(courseId);
     return { course_id: courseId, documents };
+  }
+
+  /**
+   * `GET /courses/:id/chunks/:chunkId` — the passage behind a citation, for the
+   * chat source viewer (FR-15). Same auth model as the other course endpoints:
+   * `X-User-Id` (401 if missing/invalid), then course ownership (SR-2) before the
+   * read. The read itself is course-scoped; unknown and other-course chunks are an
+   * identical 404 (SR-2). Chunk text is untrusted data, returned as-is (SR-3).
+   */
+  @Get(':id/chunks/:chunkId')
+  async getChunk(
+    @Headers('x-user-id') userIdHeader: string | undefined,
+    @Param('id', new ZodValidationPipe(uuidParamSchema)) courseId: string,
+    @Param('chunkId', new ZodValidationPipe(uuidParamSchema)) chunkId: string,
+  ): Promise<ChunkPassageRecord> {
+    const ownerId = this.requireUserId(userIdHeader);
+    await this.courses.assertOwnership(courseId, ownerId);
+    return this.courses.getChunkPassage(courseId, chunkId);
   }
 
   private assertAllowedType(file: Express.Multer.File): void {

@@ -18,6 +18,19 @@ export interface DocumentStatusRecord {
   created_at: string;
 }
 
+/**
+ * The passage behind a citation, for the chat source viewer (FR-15). Lean by
+ * design (FR-14/NFR-2): exactly the fields the viewer renders. `text` is
+ * untrusted document content (SR-3) — returned verbatim, never interpreted.
+ */
+export interface ChunkPassageRecord {
+  chunk_id: string;
+  document_id: string;
+  filename: string;
+  page: number | null;
+  text: string;
+}
+
 /** Result of inserting a queued document, returned to the client. */
 export interface QueuedDocument {
   document_id: string;
@@ -98,5 +111,30 @@ export class CoursesService {
         ORDER BY created_at DESC`,
       [courseId],
     );
+  }
+
+  /**
+   * Read one chunk's passage for the source viewer (FR-15). Course-scoped (SR-2):
+   * the chunk must belong to a document whose `course_id` is `courseId`. A chunk
+   * that does not exist and a chunk from another course both yield the same 404,
+   * so the endpoint cannot be used to probe for chunk ids across courses.
+   * Plain parameterised row read — not vector search, so it lives here rather
+   * than in `packages/retrieval`.
+   */
+  async getChunkPassage(courseId: string, chunkId: string): Promise<ChunkPassageRecord> {
+    const rows = await this.db.query<ChunkPassageRecord>(
+      `SELECT c.id AS chunk_id, c.document_id, d.filename, c.page, c.text
+         FROM chunks c
+         JOIN documents d ON d.id = c.document_id
+        WHERE c.id = $1
+          AND d.course_id = $2
+          AND c.course_id = $2`,
+      [chunkId, courseId],
+    );
+    const chunk = rows[0];
+    if (!chunk) {
+      throw new NotFoundException('Chunk not found');
+    }
+    return chunk;
   }
 }
