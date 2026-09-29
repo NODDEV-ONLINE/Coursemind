@@ -1,0 +1,116 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Chat-Answer.dc.html": {
+      "h": 844,
+      "title": "03 · Answer, streaming + cited",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "Chat-Desktop.dc.html": {
+      "h": 900,
+      "title": "07 · Student chat, desktop",
+      "w": 1440,
+      "x": 0,
+      "y": 1244
+    },
+    "Chat-Empty.dc.html": {
+      "h": 844,
+      "title": "02 · Chat, empty state",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "Chat-Refusal.dc.html": {
+      "h": 844,
+      "title": "04 · Refusal",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "Lecturer-Dashboard.dc.html": {
+      "h": 960,
+      "title": "08 · Lecturer dashboard",
+      "w": 1440,
+      "x": 1520,
+      "y": 1244
+    },
+    "Main.dc.html": {
+      "h": 844,
+      "title": "01 · Onboarding + consent",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "Settings-Privacy.dc.html": {
+      "h": 844,
+      "title": "06 · Low-data + privacy",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "Source-Viewer.dc.html": {
+      "h": 844,
+      "title": "05 · Source viewer drawer",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "States.dc.html": {
+      "h": 1040,
+      "title": "09 · States, errors + resilience",
+      "w": 1440,
+      "x": 0,
+      "y": 2604
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-09-29T13:34:20.736Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "row1": {
+      "kind": "title1",
+      "maxW": 2740,
+      "text": "Student app · mobile first (390 wide, works down to 320)",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "row2": {
+      "kind": "title1",
+      "maxW": 2960,
+      "text": "Desktop chat + lecturer dashboard",
+      "w": 240,
+      "x": 0,
+      "y": 944
+    },
+    "row3": {
+      "kind": "title1",
+      "maxW": 1440,
+      "text": "Every state, designed on purpose",
+      "w": 240,
+      "x": 0,
+      "y": 2304
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Chat-Empty.dc.html",
+    "Chat-Answer.dc.html",
+    "Chat-Refusal.dc.html",
+    "Source-Viewer.dc.html",
+    "Settings-Privacy.dc.html",
+    "Chat-Desktop.dc.html",
+    "Lecturer-Dashboard.dc.html",
+    "States.dc.html"
+  ],
+  "pages": [],
+  "title": "CourseMind Web App"
+}

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Source viewer drawer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#090E19;color:#F4F5F6;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:#CEC7FB}a:hover{color:#F4F5F6}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; background: #090E19; color: #F4F5F6; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;">
+  <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; box-sizing: border-box; padding: 76px 16px 0; display: flex; flex-direction: column; gap: 10px; background: #090E19;">
+    <div style="height: 14px; width: 240px; border-radius: 6px; background: #1C2138;"></div>
+    <div style="height: 14px; width: 320px; border-radius: 6px; background: #1C2138;"></div>
+    <div style="height: 14px; width: 280px; border-radius: 6px; background: #1C2138;"></div>
+    <div style="height: 14px; width: 300px; border-radius: 6px; background: #1C2138;"></div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; background: rgba(4, 6, 12, 0.72);"></div>
+
+  <section role="dialog" aria-label="Source: Lecture 6, page 3" style="position: absolute; left: 0; bottom: 0; width: 390px; height: 700px; box-sizing: border-box; padding: 8px 0 0; display: flex; flex-direction: column; background: #12172A; border-top: 1px solid #2D304F; border-radius: 20px 20px 0 0;">
+    <div aria-hidden="true" style="align-self: center; width: 40px; height: 4px; border-radius: 4px; background: #2D304F;"></div>
+    <div style="padding: 12px 8px 12px 16px; display: flex; align-items: flex-start; gap: 10px; border-bottom: 1px solid #2D304F;">
+      <span style="flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px; background: rgba(108, 81, 247, 0.18); display: flex; align-items: center; justify-content: center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CEC7FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg>
+      </span>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+        <span style="font-size: 15px; font-weight: 600;">Lecture 6: Stacks &amp; Queues</span>
+        <span style="font-size: 12px; color: #979EA9;">PDF · page 3 of 18 · uploaded 12 Sep</span>
+      </div>
+      <button type="button" aria-label="Close source" style="flex-shrink: 0; width: 44px; height: 44px; border: 0; border-radius: 10px; background: transparent; display: flex; align-items: center; justify-content: center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F4F5F6" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </button>
+    </div>
+
+    <div style="flex-grow: 1; box-sizing: border-box; padding: 16px; display: flex; flex-direction: column; gap: 14px; overflow: hidden;">
+      <div style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #090E19; border-radius: 10px; font-size: 12px; color: #979EA9;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CEC7FB" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 20V14M10 20V9M16 20V4"></path></svg>
+        <span style="flex-grow: 1;">Text only · 1.2 KB</span>
+        <button type="button" style="height: 32px; padding: 0 10px; border: 1px solid #2D304F; border-radius: 8px; background: transparent; color: #CEC7FB; font-size: 12px; font-family: inherit;">Show page image · 84 KB</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; font-family: Georgia, 'Times New Roman', serif; font-size: 16px; line-height: 1.65; color: #C9CDD4;">
+        <span style="font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #979EA9;">6.1 The stack ADT</span>
+        <p style="margin: 0;">A stack is an ordered collection in which insertion and removal happen at the same end, called the top.</p>
+        <p style="margin: 0; padding: 8px 10px; border-radius: 8px; background: rgba(108, 81, 247, 0.2); color: #F4F5F6; box-shadow: inset 0 0 0 1px rgba(155, 133, 249, 0.55);"><mark style="background: transparent; color: inherit;">The element added last is the first to be removed. For this reason a stack is described as last-in, first-out (LIFO).</mark></p>
+        <p style="margin: 0;">The two core operations are push, which places an element on the top, and pop, which removes the element on the top and returns it.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border: 1px dashed #2D304F; border-radius: 10px;">
+        <span style="font-size: 12px; color: #979EA9;">Cited for</span>
+        <span style="font-size: 14px; line-height: 1.45;">“A stack is last-in, first-out: the last item you push is the first one you pop.”</span>
+      </div>
+    </div>
+
+    <div style="flex-shrink: 0; padding: 10px 12px 16px; display: flex; align-items: center; gap: 8px; border-top: 1px solid #2D304F;">
+      <button type="button" aria-label="Previous source" style="width: 44px; height: 44px; border: 1px solid #2D304F; border-radius: 12px; background: transparent; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F4F5F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+      <span style="flex-grow: 1; text-align: center; font-size: 13px; color: #979EA9; font-variant-numeric: tabular-nums;">Source 1 of 3</span>
+      <button type="button" aria-label="Next source" style="width: 44px; height: 44px; border: 1px solid #2D304F; border-radius: 12px; background: transparent; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F4F5F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

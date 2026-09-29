@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chat states gallery</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#090E19;color:#F4F5F6;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:#CEC7FB}a:hover{color:#F4F5F6}
+textarea::placeholder{color:#979EA9}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1040px; box-sizing: border-box; padding: 44px 48px; display: flex; flex-direction: column; gap: 28px; background: #090E19; color: #F4F5F6; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;">
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;">
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <h1 style="margin: 0; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 30px; font-weight: 600; letter-spacing: -0.02em;">One answer, eight states</h1>
+      <p style="margin: 0; font-size: 15px; color: #979EA9;">Each state carries an icon and a label, never colour alone. Motion respects reduced-motion.</p>
+    </div>
+    <div style="display: flex; gap: 16px; font-size: 13px; color: #979EA9;">
+      <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: #6C51F7;"></span>Cited</span>
+      <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: #F59E0B;"></span>Refused</span>
+      <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: #EF4444;"></span>Error</span>
+    </div>
+  </div>
+
+  <div style="flex-grow: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 24px;">
+
+    <section style="display: flex; flex-direction: column; gap: 12px; padding: 18px; background: #12172A; border: 1px solid #2D304F; border-radius: 16px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #979EA9;">01 · Searching</span>
+      <div style="align-self: flex-end; padding: 8px 12px; background: #262A45; border-radius: 14px 14px 4px 14px; font-size: 14px;">Why is binary search O(log n)?</div>
+      <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #CEC7FB;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CEC7FB" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9"></path></svg>
+        Searching your course materials…
+      </div>
+      <div aria-hidden="true" style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 12px; width: 92%; border-radius: 6px; background: #1C2138;"></div>
+        <div style="height: 12px; width: 78%; border-radius: 6px; background: #1C2138;"></div>
+        <div style="height: 12px; width: 60%; border-radius: 6px; background: #1C2138;"></div>
+      </div>
+      <p style="margin: auto 0 0; font-size: 12px; line-height: 1.5; color: #979EA9;">The question echoes instantly. Skeleton, not spinner, so 3G feels fast.</p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 12px; padding: 18px; background: #12172A; border: 1px solid #2D304F; border-radius: 16px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #979EA9;">02 · Streaming</span>
+      <p style="margin: 0; font-size: 14px; line-height: 1.6;">Each step halves the part of the list you still search <button type="button" aria-label="Source: Lecture 3, page 14" style="display: inline-flex; padding: 0 6px; background: rgba(108, 81, 247, 0.18); border: 1px solid rgba(108, 81, 247, 0.5); border-radius: 6px; color: #CEC7FB; font-size: 11px; font-weight: 600; font-family: inherit; line-height: 1.6;">L3 · p.14</button>, so after k steps only n/2<sup>k</sup> items<span aria-hidden="true" style="display: inline-block; width: 7px; height: 15px; margin-left: 2px; vertical-align: -2px; background: #9B85F9; border-radius: 1px;"></span></p>
+      <button type="button" style="align-self: flex-start; height: 36px; padding: 0 12px; border: 1px solid #2D304F; border-radius: 999px; background: transparent; color: #F4F5F6; font-size: 13px; font-family: inherit; display: flex; align-items: center; gap: 8px;">
+        <svg width="11" height="11" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2" fill="#F4F5F6"></rect></svg>
+        Stop generating
+      </button>
+      <p style="margin: auto 0 0; font-size: 12px; line-height: 1.5; color: #979EA9;">Screen readers hear finished sentences via a polite live region, not every token.</p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 12px; padding: 18px; background: #12172A; border: 1px solid #2D304F; border-radius: 16px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #979EA9;">03 · Done + down-vote</span>
+      <div style="display: flex; align-items: center; gap: 2px; margin-left: -8px;">
+        <button type="button" aria-label="Helpful" aria-pressed="false" style="width: 40px; height: 40px; border: 0; background: transparent; border-radius: 10px; display: flex; align-items: center; justify-content: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#979EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v11H4V10zM7 10l4-7a2 2 0 0 1 3 2l-1 4h6a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 17.6 21H7"></path></svg></button>
+        <button type="button" aria-label="Not helpful" aria-pressed="true" style="width: 40px; height: 40px; border: 0; background: rgba(108, 81, 247, 0.16); border-radius: 10px; display: flex; align-items: center; justify-content: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CEC7FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 14V3h3v11zM17 14l-4 7a2 2 0 0 1-3-2l1-4H5a2 2 0 0 1-2-2.3l1.4-8A2 2 0 0 1 6.4 3H17"></path></svg></button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px; background: #090E19; border: 1px solid #2D304F; border-radius: 12px;">
+        <span style="font-size: 13px; font-weight: 600;">What was wrong? <span style="font-weight: 400; color: #979EA9;">Optional</span></span>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <button type="button" aria-pressed="true" style="height: 32px; padding: 0 10px; border: 1px solid #6C51F7; border-radius: 999px; background: rgba(108, 81, 247, 0.18); color: #CEC7FB; font-size: 12px; font-family: inherit;">Wrong source</button>
+          <button type="button" aria-pressed="false" style="height: 32px; padding: 0 10px; border: 1px solid #2D304F; border-radius: 999px; background: transparent; color: #F4F5F6; font-size: 12px; font-family: inherit;">Unclear</button>
+          <button type="button" aria-pressed="false" style="height: 32px; padding: 0 10px; border: 1px solid #2D304F; border-radius: 999px; background: transparent; color: #F4F5F6; font-size: 12px; font-family: inherit;">Incomplete</button>
+        </div>
+        <textarea rows="2" aria-label="Tell us more" placeholder="Tell us more…" style="resize: none; box-sizing: border-box; padding: 8px 10px; background: #12172A; border: 1px solid #2D304F; border-radius: 8px; color: #F4F5F6; font-size: 14px; font-family: inherit;"></textarea>
+        <button type="button" style="align-self: flex-end; height: 36px; padding: 0 14px; border: 0; border-radius: 10px; background: #6C51F7; color: #FFFFFF; font-size: 13px; font-weight: 600; font-family: inherit;">Send</button>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 12px; padding: 18px; background: #12172A; border: 1px solid #2D304F; border-radius: 16px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #979EA9;">04 · Refused</span>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; background: #17140C; border: 1px solid rgba(245, 158, 11, 0.45); border-radius: 12px;">
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #FCD58A;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"></path><path d="M4 21V5"></path><path d="M9 9l5 5M14 9l-5 5"></path></svg>
+          Not in your course materials
+        </span>
+        <span style="font-size: 13px; line-height: 1.5;">I didn't find this in CSC 201, so I won't guess.</span>
+        <button type="button" style="align-self: flex-start; height: 36px; padding: 0 12px; border: 1px solid rgba(245, 158, 11, 0.6); border-radius: 8px; background: transparent; color: #FCD58A; font-size: 13px; font-family: inherit;">Tell my lecturer</button>
+      </div>
+      <p style="margin: auto 0 0; font-size: 12px; line-height: 1.5; color: #979EA9;">Warm, calm, expected. A book icon, not a warning triangle.</p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 12px; padding: 18px; background: #12172A; border: 1px solid #2D304F; border-radius: 16px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #979EA9;">05 · Error</span>
+      <div role="alert" style="display: flex; flex-direction: column; gap: 10px; padding: 14px; background: #1A0E12; border: 1px solid rgba(239, 68, 68, 0.5); border-radius: 12px;">
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #FCA5A5;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FCA5A5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"></path><path d="M12 10v4M12 17.5v.5"></path></svg>
+          Something broke on our side
+        </span>
+        <span style="font-size: 13px; line-height: 1.5;">Your question is saved. Nothing was charged to your data.</span>
+        <button type="button" style="align-self: flex-start; height: 36px; padding: 0 14px; border: 0; border-radius: 8px; background: #F4F5F6; color: #090E19; font-size: 13px; font-weight: 600; font-family: inherit;">Try again</button>
+      </div>
+      <p style="margin: auto 0 0; font-size: 12px; line-height: 1.5; color: #979EA9;">Red is reserved for real failures, so refusals never look broken.</p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 12px; padding: 18px; background: #12172A; border: 1px solid #2D304F; border-radius: 16px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #979EA9;">06 · Connection lost</span>
+      <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #979EA9;">A queue is first-in, first-out: items leave in the order they</p>
+      <div role="status" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #090E19; border: 1px solid #2D304F; border-radius: 12px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F4F5F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8.8a15 15 0 0 1 4.2-2.6M22 8.8a15 15 0 0 0-8.6-3.7M5 12.5a10 10 0 0 1 3.5-2M19 12.5a10 10 0 0 0-2.3-1.6M8.5 16a5 5 0 0 1 7 0M12 20h.01M3 3l18 18"></path></svg>
+        <span style="flex-grow: 1; font-size: 13px; line-height: 1.4;">Connection lost. We kept what arrived.</span>
+        <button type="button" style="height: 36px; padding: 0 12px; border: 1px solid #2D304F; border-radius: 8px; background: transparent; color: #CEC7FB; font-size: 13px; font-family: inherit;">Resume</button>
+      </div>
+      <p style="margin: auto 0 0; font-size: 12px; line-height: 1.5; color: #979EA9;">Partial text stays, dimmed. Resume retries only the missing part.</p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 12px; padding: 18px; background: #12172A; border: 1px solid #2D304F; border-radius: 16px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #979EA9;">07 · Slow down (rate limit)</span>
+      <div role="status" style="display: flex; flex-direction: column; gap: 10px; padding: 14px; background: #090E19; border: 1px solid #2D304F; border-radius: 12px;">
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CEC7FB" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2M9 2h6"></path></svg>
+          You're asking fast. Nice.
+        </span>
+        <span style="font-size: 13px; line-height: 1.5;">Take a breather: you can ask again in <strong style="font-variant-numeric: tabular-nums;">1:40</strong>. Your draft is kept.</span>
+        <div aria-hidden="true" style="height: 6px; border-radius: 999px; background: #262A45; display: flex;"><span style="width: 45%; border-radius: 999px; background: #9B85F9;"></span></div>
+      </div>
+      <p style="margin: auto 0 0; font-size: 12px; line-height: 1.5; color: #979EA9;">Never a raw 429. The send button shows the countdown too.</p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 12px; padding: 18px; background: #12172A; border: 1px solid #2D304F; border-radius: 16px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #979EA9;">08 · Source being updated</span>
+      <p style="margin: 0; font-size: 14px; line-height: 1.6;">Heaps keep the smallest item at the root <button type="button" aria-label="Source: Week 7 slides, being updated" aria-disabled="true" style="display: inline-flex; align-items: center; gap: 4px; padding: 0 6px; background: transparent; border: 1px dashed #979EA9; border-radius: 6px; color: #979EA9; font-size: 11px; font-weight: 600; font-family: inherit; line-height: 1.6;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#979EA9" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9"></path></svg>Wk7 · s.4</button></p>
+      <div style="display: flex; gap: 8px; padding: 10px 12px; background: #090E19; border: 1px solid #2D304F; border-radius: 12px; font-size: 13px; line-height: 1.45;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CEC7FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 1px;" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 7.5v.5"></path></svg>
+        <span>Your lecturer is updating this document. The source opens once it's ready; we'll re-check this answer.</span>
+      </div>
+      <p style="margin: auto 0 0; font-size: 12px; line-height: 1.5; color: #979EA9;">Dashed chip + spinner icon, so the state reads without colour.</p>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
