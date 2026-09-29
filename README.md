@@ -46,6 +46,7 @@ CI workflow: [DEVELOPMENT.md](./DEVELOPMENT.md).
 - 📄 [ADR-0001](./docs/adr/0001-vector-store-pgvector-vs-dedicated.md) — pgvector vs. dedicated vector DB
 - 📄 [ADR-0002](./docs/adr/0002-model-and-retrieval-configuration.md) — LLM/embeddings/reranker/index config
 - 📄 [ADR-0003](./docs/adr/0003-migration-tooling-node-pg-migrate.md) — migration tooling (node-pg-migrate)
+- 📄 [ADR-0004](./docs/adr/0004-query-embedding-location.md) — query embedding via the Python /embed endpoint
 - 🎨 [Brand & Theme](./brand/BRAND.md) — logo concept, colour palette, design tokens
 - 📐 [Project Rules](./CLAUDE.md) — engineering conventions & guardrails
 - 🗂️ [Milestone 2 plan — Ingestion](./docs/milestones/M2-ingestion.md) — task checklist
