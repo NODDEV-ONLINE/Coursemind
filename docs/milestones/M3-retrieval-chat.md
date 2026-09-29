@@ -66,16 +66,16 @@ no reranker for MVP; HNSW).
 - [x] A3 — Score threshold + insufficient-context refusal signal (FR-12; default 0.35, configurable).
 - [x] A4 — Typed `RetrievalHit`/`RetrievalResult` + `retrieveChunks`; 12 unit tests (E1).
 
-### B. Grounded answering — `apps/api` (NestJS) *(core)*
-- [ ] B1 — LLM provider abstraction: `.env`-selected (Anthropic default), streaming,
+### B. Grounded answering — `apps/api` (NestJS) *(core)* — 🟡 slice 1 (B1–B6) done; slice 2 (B7–B8) pending
+- [x] B1 — LLM provider abstraction: `.env`-selected (Anthropic default), streaming,
       optional fallback (ADR-0002 §1, NFR-4).
-- [ ] B2 — Grounded prompt builder: retrieved chunks as **untrusted** context, instruct
+- [x] B2 — Grounded prompt builder: retrieved chunks as **untrusted** context, instruct
       cite-every-claim by `[doc:page]`, emit refusal token when context is insufficient (SR-3).
-- [ ] B3 — `POST /courses/:id/ask` → **SSE stream** of answer + citations (FR-8, FR-13).
-- [ ] B4 — Citation extraction + **validation** (cited chunk ids must exist; invalid →
+- [x] B3 — `POST /courses/:id/ask` → **SSE stream** of answer + citations (FR-8, FR-13).
+- [x] B4 — Citation extraction + **validation** (cited chunk ids must exist; invalid →
       treated as failure) (FR-11).
-- [ ] B5 — Refusal path returns the explicit "not in your course materials" message (FR-12).
-- [ ] B6 — Low-data mode: compact text response < 30 KB, no heavy assets (FR-14, NFR-2).
+- [x] B5 — Refusal path returns the explicit "not in your course materials" message (FR-12).
+- [x] B6 — Low-data mode: compact text response < 30 KB, no heavy assets (FR-14, NFR-2).
 - [ ] B7 — Persist `questions`, `answers`, `answer_citations` + `latency_ms`, tokens,
       `cost_usd`, `model` (fills M2 stub tables); consent recorded before storing (PR-2).
 - [ ] B8 — Per-student rate limit on the ask endpoint (FR-30).
@@ -96,10 +96,10 @@ no reranker for MVP; HNSW).
 
 ### E. Tests & CI *(gate)*
 - [x] E1 — Retrieval unit tests (course scoping, top-K, threshold, dim guard) — 12 tests.
-- [ ] E2 — Grounding + **refusal** tests: off-syllabus question is refused; on-syllabus
+- [x] E2 — Grounding + **refusal** tests: off-syllabus question is refused; on-syllabus
       answer carries valid citations.
-- [ ] E3 — Citation-validation test: an answer citing a non-existent chunk fails.
-- [ ] E4 — Streaming test (SSE contract).
+- [x] E3 — Citation-validation test: an answer citing a non-existent chunk fails.
+- [x] E4 — Streaming test (SSE contract).
 - [ ] E5 — Web smoke test (chat renders a streamed answer + citation).
 - [ ] E6 — CI runs all of the above (builds on M2's E5 pipeline).
 
