@@ -15,16 +15,28 @@ PostgreSQL/pgvector. Built for low-end Android and metered data (Nigerian contex
 
 ## Status
 
-🟡 **Milestone 1 — Documentation (in progress).** No application code yet.
+🟢 **Milestone 2 — Ingestion: complete.** Upload → parse → chunk → embed → store,
+with a NestJS API, the Python pipeline, CI, and a one-command Docker stack.
 
 | Milestone | Status |
 | --- | --- |
-| 1. Docs (PRD, SRS, SDD, ADR) | ✅ drafted |
-| 2. Ingestion | 🟡 in progress (Tasks A scaffold + B database done) |
-| 3. Retrieval + chat UI | ⬜ |
+| 1. Docs (PRD, SRS, SDD, ADR) | ✅ done |
+| 2. Ingestion | ✅ done (scaffold · DB · Python pipeline · API · CI · compose) |
+| 3. Retrieval + chat UI | 🔜 [planned](./docs/milestones/M3-retrieval-chat.md) |
 | 4. Accuracy tests + CI gate | ⬜ |
 | 5. MCP server | ⬜ |
 | 6. Student pilot + observability | ⬜ |
+
+## Run locally (one command)
+
+```bash
+cp .env.example .env        # then set GOOGLE_API_KEY (embeddings, ADR-0002 §2)
+docker compose -f infra/docker-compose.yml up
+```
+
+Brings up Postgres+pgvector, applies migrations (one-shot), and starts the
+Python ingestion service (`:8000`) and the NestJS API (`:3000`). Details and the
+CI workflow: [DEVELOPMENT.md](./DEVELOPMENT.md).
 
 ## Documentation
 

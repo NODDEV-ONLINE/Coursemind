@@ -1,7 +1,19 @@
-# CourseMind local infrastructure (M2 Task B).
-# Single Postgres + pgvector datastore (ADR-0001). Bring up with:
-#   docker compose -f infra/docker-compose.yml up -d
-# then apply migrations from the repo root: pnpm migrate
+# CourseMind local stack — M2 Tasks B (Postgres) + E6 (full stack, one command).
+# Single Postgres + pgvector datastore (ADR-0001).
+#
+# One-command run (from the repo root):
+#   docker compose -f infra/docker-compose.yml up
+#
+# Prerequisite: copy .env.example to .env and set GOOGLE_API_KEY (embeddings,
+# ADR-0002 §2). All other values have dev defaults below. Secrets come from the
+# host env / .env only — never baked into images (CLAUDE.md §3, SR-4).
+#
+# Startup order (enforced by healthchecks + depends_on):
+#   postgres (healthy) -> migrate (runs once, applies schema) -> api + ingest-eval
+#
+# The API writes an uploaded file to the shared "uploads" volume and hands the
+# file_path to the Python service, which reads it from the same volume mounted at
+# the same path (UPLOAD_DIR=/uploads in both). Fire-and-forget hand-off (D4).
 services:
   postgres:
     image: pgvector/pgvector:pg16
@@ -20,3 +32,86 @@ services:
       timeout: 5s
       retries: 10
     restart: unless-stopped
+
+  # One-shot schema apply (node-pg-migrate, ADR-0003). Runs to completion once
+  # Postgres is healthy, then exits — so `up` yields a ready schema without a
+  # manual post-up step. `up` treats a clean exit(0) as success.
+  migrate:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+      target: migrate
+    image: coursemind-migrate
+    container_name: coursemind-migrate
+    environment:
+      # In-network DSN (service name "postgres"), overriding any localhost value.
+      DATABASE_URL: postgresql://${POSTGRES_USER:-coursemind}:${POSTGRES_PASSWORD:-coursemind}@postgres:5432/${POSTGRES_DB:-coursemind}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  ingest-eval:
+    build:
+      context: ../services/ingest-eval
+      dockerfile: Dockerfile
+    image: coursemind-ingest-eval
+    container_name: coursemind-ingest-eval
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-coursemind}:${POSTGRES_PASSWORD:-coursemind}@postgres:5432/${POSTGRES_DB:-coursemind}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:?set GOOGLE_API_KEY in .env (ADR-0002 §2)}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-text-embedding-004}
+      EMBEDDING_DIM: ${EMBEDDING_DIM:-768}
+      CHUNK_SIZE: ${CHUNK_SIZE:-800}
+      CHUNK_OVERLAP: ${CHUNK_OVERLAP:-160}
+      UPLOAD_DIR: /uploads
+    ports:
+      - "8000:8000"
+    volumes:
+      - uploads:/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+      target: runtime
+    image: coursemind-api
+    container_name: coursemind-api
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-coursemind}:${POSTGRES_PASSWORD:-coursemind}@postgres:5432/${POSTGRES_DB:-coursemind}
+      INGEST_SERVICE_URL: http://ingest-eval:8000
+      PORT: ${PORT:-3000}
+      UPLOAD_DIR: /uploads
+      # loadEnv() (packages/config) validates the embedding config at startup too.
+      EMBEDDING_PROVIDER: ${EMBEDDING_PROVIDER:-google}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-text-embedding-004}
+      EMBEDDING_DIM: ${EMBEDDING_DIM:-768}
+      # API itself doesn't call embeddings (the ingest service does); pass through
+      # if set, but don't block API startup on it.
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-}
+      LLM_PROVIDER: ${LLM_PROVIDER:-anthropic}
+      LLM_MODEL: ${LLM_MODEL:-claude-opus-4-8}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+    ports:
+      - "3000:3000"
+    volumes:
+      - uploads:/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+      ingest-eval:
+        condition: service_started
+    restart: unless-stopped
+
+volumes:
+  # Shared uploads: API writes, ingest-eval reads by file_path. Both mount /uploads.
+  uploads:
+    name: coursemind-uploads

@@ -10,6 +10,7 @@ describe('loadEnv', () => {
     expect(env.EMBEDDING_PROVIDER).toBe('google');
     expect(env.EMBEDDING_DIM).toBe(768);
     expect(typeof env.EMBEDDING_DIM).toBe('number');
+    expect(env.UPLOAD_DIR).toBe('/tmp/coursemind-uploads');
   });
 
   it('throws a readable error when DATABASE_URL is missing', () => {

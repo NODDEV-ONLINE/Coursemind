@@ -1,0 +1,1 @@
+- [CourseMind project state](project_coursemind_state.md) — M2 milestone status, monorepo topology, Python ingest contract, DB schema key facts, upload file-sharing decision

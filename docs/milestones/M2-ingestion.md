@@ -19,9 +19,9 @@ rules in §Rules below.
 - [ ] Re-uploading the same file does **not** duplicate chunks (content-hash idempotent).
 - [ ] Ingestion status transitions `queued → processing → ready | failed` are visible.
 - [ ] A failed ingest reports a reason and is retryable.
-- [ ] `docker compose up` brings up Postgres+pgvector and the services; documented in README.
+- [x] `docker compose up` brings up Postgres+pgvector and the services; documented in README.
 - [ ] Tests: ingest a sample PDF, assert chunks + embeddings land and dims match.
-- [ ] CI green (lint + type-check + tests).
+- [x] CI green (lint + type-check + tests). Enforced by `.github/workflows/ci.yml` (NFR-11).
 
 ---
 
@@ -52,18 +52,18 @@ rules in §Rules below.
 - [x] C8 — Runnable as an internal HTTP API **and** a CLI (CI-friendly).
 
 ### D. Upload trigger + status — TS `apps/api` (NestJS) *(thin slice)*
-- [ ] D1 — NestJS app bootstrap + config module (typed env) + health route.
-- [ ] D2 — `POST /courses` and `POST /courses/:id/documents` (accept upload → enqueue ingest) (FR-1).
-- [ ] D3 — `GET /courses/:id/status` returns per-document ingest status (FR-5).
-- [ ] D4 — Hand-off to the Python service (direct HTTP call for MVP; a broker is later scope).
+- [x] D1 — NestJS app bootstrap + config module (typed env) + health route.
+- [x] D2 — `POST /courses` and `POST /courses/:id/documents` (accept upload → enqueue ingest) (FR-1).
+- [x] D3 — `GET /courses/:id/status` returns per-document ingest status (FR-5).
+- [x] D4 — Hand-off to the Python service (direct HTTP call for MVP; a broker is later scope).
 
 ### E. Tests & CI *(gate)*
 - [x] E1 — Sample fixtures: a small PDF and a small PPTX in the repo.
 - [x] E2 — Python test: parse→chunk→embed→store; assert chunk count, metadata, dim.
 - [x] E3 — Idempotency test: re-ingest same file → no duplicate chunks.
-- [ ] E4 — API test: upload → status reaches `ready`.
-- [ ] E5 — GitHub Actions: install, lint, type-check, run Python + TS tests on PR (NFR-11).
-- [ ] E6 — Update README: one-command local run (NFR-12).
+- [x] E4 — API test (`apps/api/tests`): mocked `pg.Pool` + `fetch`. Covers POST /courses insert, POST /courses/:id/documents queued-insert + ingest fire with correct body, GET /courses/:id/status course-scoped list, and the fire-and-forget network-failure → `status='failed'` path. (The live `queued→ready` transition is owned by the Python service and exercised by its own suite; the API trigger is fire-and-forget by design.)
+- [x] E5 — GitHub Actions: install, lint, type-check, run Python + TS tests on PR (NFR-11). Two parallel jobs (`typescript`, `python`) in `.github/workflows/ci.yml`, triggered on PRs to `dev`/`master` and pushes to those branches. Tests are fully mocked — no service containers, keeps CI fast.
+- [x] E6 — `docker compose -f infra/docker-compose.yml up` brings up the full stack (Postgres+pgvector, one-shot `migrate`, `ingest-eval`, `api`) via `apps/api/Dockerfile` + `services/ingest-eval/Dockerfile` and a shared `uploads` volume; one-command run documented in `README.md` / `DEVELOPMENT.md` (NFR-12).
 
 ---
 
