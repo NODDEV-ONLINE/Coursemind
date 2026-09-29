@@ -22,7 +22,7 @@ Postgres+pgvector.
 | `embedder.py` | `EmbeddingProtocol` + `GoogleEmbeddingClient`; batching + tenacity retry (FR-4, NFR-5) |
 | `store.py` | `set_document_status`, `store_chunks_and_embeddings`; dim guard + atomic transaction (ADR-0001, ADR-0002) |
 | `pipeline.py` | `ingest_document` — orchestrates the full pipeline with status transitions (FR-5) |
-| `app.py` | FastAPI: `GET /health`, `POST /ingest`; sync endpoints in threadpool (C1, C8) |
+| `app.py` | FastAPI: `GET /health`, `POST /ingest`, `POST /embed`; sync endpoints in threadpool (C1, C8, ADR-0004) |
 | `cli.py` | `python -m coursemind_ingest.cli ingest` (C8) |
 
 ---
@@ -68,6 +68,58 @@ curl -X POST http://localhost:8001/ingest \
   -H "Content-Type: application/json" \
   -d '{"document_id":"<uuid>","course_id":"<uuid>","file_path":"/abs/path/to/file.pdf"}'
 ```
+
+Embed a query string (used by `packages/retrieval`, see ADR-0004):
+```bash
+curl -X POST http://localhost:8001/embed \
+  -H "Content-Type: application/json" \
+  -d '{"text":"What is Newton'\''s first law?"}'
+# Response: {"embedding":[0.012,...], "model":"text-embedding-004", "dim":768}
+```
+
+---
+
+## `POST /embed` — query embedding (ADR-0004, M3 Task A-1)
+
+Embeds a single text string using the same model as document ingestion
+(`text-embedding-004`, 768-dim), so query and document vectors are always
+comparable. Used exclusively by `packages/retrieval` (TypeScript) to avoid
+a second embedding implementation.
+
+**Request**
+
+```json
+{ "text": "string (non-empty)" }
+```
+
+**Response 200**
+
+```json
+{
+  "embedding": [0.012, -0.003, ...],
+  "model": "text-embedding-004",
+  "dim": 768
+}
+```
+
+The caller (`packages/retrieval`) MUST validate `dim === EMBEDDING_DIM` (768)
+before issuing a vector query (ADR-0002 `embedding_meta` guard principle).
+
+**Error responses**
+
+| Status | Condition |
+|--------|-----------|
+| `422` | `text` is missing or empty |
+| `500` | Upstream Google embedding error after tenacity retries exhausted |
+
+**Design notes**
+
+- Single text only — queries are one string; no batching surface exposed.
+- The tenacity retry in `GoogleEmbeddingClient` already handles quota/backoff
+  (NFR-5); the handler adds no second retry layer.
+- Text is treated as data, never as instructions (CLAUDE.md §2, SR-3).
+- The embedding client is injected via `Depends(get_embedder)`, making it
+  mockable in tests without touching the network.
 
 ---
 
