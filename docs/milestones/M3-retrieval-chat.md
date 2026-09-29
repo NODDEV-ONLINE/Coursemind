@@ -60,12 +60,11 @@ no reranker for MVP; HNSW).
 
 ## Task list
 
-### A. Retrieval — `packages/retrieval` (shared by API + future MCP) *(core)*
-- [ ] A1 — ADR-0004 (query-embedding location) + a query-embedding client.
-- [ ] A2 — Vector search: course-scoped `SELECT ... ORDER BY embedding <=> $query LIMIT K`
-      joining `chunks` for text + `page`/`document_id` metadata (SR-2 always scoped).
-- [ ] A3 — Score threshold + "insufficient context" signal for the refusal path (FR-12).
-- [ ] A4 — Typed retrieval result (`chunk_id, document_id, page, text, score`). Unit tests.
+### A. Retrieval — `packages/retrieval` (shared by API + future MCP) *(core)* — ✅ done
+- [x] A1 — [ADR-0004](../adr/0004-query-embedding-location.md) + query-embedding client (Python `/embed`, dim guard).
+- [x] A2 — Course-scoped vector search (`WHERE c.course_id=$2`, `<=>` distance, top-K) joining `chunks` for text/page/doc (SR-2).
+- [x] A3 — Score threshold + insufficient-context refusal signal (FR-12; default 0.35, configurable).
+- [x] A4 — Typed `RetrievalHit`/`RetrievalResult` + `retrieveChunks`; 12 unit tests (E1).
 
 ### B. Grounded answering — `apps/api` (NestJS) *(core)*
 - [ ] B1 — LLM provider abstraction: `.env`-selected (Anthropic default), streaming,
@@ -96,7 +95,7 @@ no reranker for MVP; HNSW).
 - [ ] D3 — Measure p95 time-to-first-token on a throttled 3G profile (NFR-1).
 
 ### E. Tests & CI *(gate)*
-- [ ] E1 — Retrieval unit tests (course scoping, top-K, threshold).
+- [x] E1 — Retrieval unit tests (course scoping, top-K, threshold, dim guard) — 12 tests.
 - [ ] E2 — Grounding + **refusal** tests: off-syllabus question is refused; on-syllabus
       answer carries valid citations.
 - [ ] E3 — Citation-validation test: an answer citing a non-existent chunk fails.
