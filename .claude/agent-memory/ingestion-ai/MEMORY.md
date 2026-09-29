@@ -1,1 +1,2 @@
 - [M2 ingestion pipeline](project-m2-ingestion-pipeline.md) — C1–C8 + E1–E3 implemented 2026-09-28; exception classes, test approach, psycopg3 vector pattern
+- [M3 POST /embed endpoint](project-m3-embed-endpoint.md) — ADR-0004 contract, Depends injection pattern, httpx2 blocker, direct function-call test strategy

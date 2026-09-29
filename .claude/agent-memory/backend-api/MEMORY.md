@@ -1,0 +1,2 @@
+- [Ask SSE Contract](project_ask-sse-contract.md) — event contract for POST /courses/:id/ask, lives in ask.events.ts; consumed by Task C
+- [DI type-import lint warnings](feedback_di-type-import-lint-warning.md) — consistent-type-imports warnings on NestJS DI services are expected; don't --fix them
