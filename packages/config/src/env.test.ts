@@ -10,7 +10,19 @@ describe('loadEnv', () => {
     expect(env.EMBEDDING_PROVIDER).toBe('google');
     expect(env.EMBEDDING_DIM).toBe(768);
     expect(typeof env.EMBEDDING_DIM).toBe('number');
+    expect(env.RETRIEVAL_TOP_K).toBe(5);
+    expect(env.RETRIEVAL_SCORE_THRESHOLD).toBe(0.35);
     expect(env.UPLOAD_DIR).toBe('/tmp/coursemind-uploads');
+  });
+
+  it('coerces retrieval tuning values from strings', () => {
+    const env = loadEnv({
+      ...base,
+      RETRIEVAL_TOP_K: '8',
+      RETRIEVAL_SCORE_THRESHOLD: '0.5',
+    } as NodeJS.ProcessEnv);
+    expect(env.RETRIEVAL_TOP_K).toBe(8);
+    expect(env.RETRIEVAL_SCORE_THRESHOLD).toBe(0.5);
   });
 
   it('throws a readable error when DATABASE_URL is missing', () => {

@@ -31,6 +31,12 @@ export const envSchema = z.object({
   EMBEDDING_DIM: z.coerce.number().int().positive().default(768),
   GOOGLE_API_KEY: z.string().optional(),
 
+  // Retrieval tuning (ADR-0004; M3 Task A). Cosine *distance* (lower = closer).
+  // Top-K results per query; if the best hit's distance exceeds the threshold,
+  // retrieval signals insufficient context and the answer layer refuses (FR-12).
+  RETRIEVAL_TOP_K: z.coerce.number().int().positive().default(5),
+  RETRIEVAL_SCORE_THRESHOLD: z.coerce.number().positive().default(0.35),
+
   // Service wiring
   INGEST_SERVICE_URL: z.string().url().default('http://localhost:8000'),
 
