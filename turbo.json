@@ -15,7 +15,9 @@
     "EMBEDDING_MODEL",
     "EMBEDDING_DIM",
     "GOOGLE_API_KEY",
-    "INGEST_SERVICE_URL"
+    "INGEST_SERVICE_URL",
+    "API_URL",
+    "DEMO_USER_ID"
   ],
   "tasks": {
     "build": {
