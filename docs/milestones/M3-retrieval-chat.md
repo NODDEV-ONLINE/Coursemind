@@ -1,6 +1,6 @@
 # Milestone 3 — Retrieval + Chat UI (Plan)
 
-**Status:** Planned (not started)
+**Status:** In progress (A done; B slice 1 done; C mobile MVP done)
 **Timeframe:** weeks 5–6 (plan)
 **Goal:** A student asks a question and gets a **streamed, cited answer generated
 only from the course materials** — or an explicit refusal when the answer isn't in
@@ -80,14 +80,51 @@ no reranker for MVP; HNSW).
       `cost_usd`, `model` (fills M2 stub tables); consent recorded before storing (PR-2).
 - [ ] B8 — Per-student rate limit on the ask endpoint (FR-30).
 
-### C. Chat UI — `apps/web` (Next.js + React + Tailwind) *(surface)*
-- [ ] C1 — Next.js (App Router) scaffold + Tailwind wired to brand tokens (`brand/BRAND.md`).
-- [ ] C2 — Student chat page: ask box + streamed answer render (consumes the SSE) (FR-13).
-- [ ] C3 — Inline citations + source viewer (open the cited page/slide passage) (FR-11, FR-15).
-- [ ] C4 — Refusal state styled distinctly (uses `--refused`; icon + label, not colour alone).
-- [ ] C5 — Low-data mode toggle (compact, asset-light) (FR-14) + responsive on low-end Android.
-- [ ] C6 — Answer rating (thumbs up/down); down-votes logged (FR-16).
-- [ ] C7 — Minimal consent capture on first use (PR-2).
+### C. Chat UI — `apps/web` (Next.js + React + Tailwind) *(surface)* — 🟡 mobile MVP done; C6 logging pending
+Mobile student chat per [`docs/design/web-app`](../design/web-app/README.md) (desktop
+three-pane + lecturer dashboard out of scope). Course = link `/c/<courseId>`. The
+browser only talks to Next route handlers (`/api/courses/:id/ask`, `…/chunks/:chunkId`),
+which proxy to `API_URL` and inject `X-User-Id` from server-only `DEMO_USER_ID`.
+- [x] C1 — Next.js 16 (App Router, TS strict) + Tailwind 4; `BRAND.md` tokens as CSS vars +
+      the only Tailwind palette; Space Grotesk 600 via `next/font` (skipped in low-data mode).
+- [x] C2 — Chat page: ask box (Enter/Shift+Enter, Send), instant echo, "Searching…"
+      skeleton, streamed render with caret (rAF-batched), Stop (partial kept), auto-scroll
+      + "Scroll to latest", suggested questions (FR-13).
+- [x] C3 — Inline `[doc:… p…]` markers → citation-chip buttons (partial markers hidden;
+      unvalidated chips dropped on `citations`), Sources footer, bottom-drawer source viewer
+      that fetches the passage lazily on open; 404 → "being updated" (FR-11, FR-15).
+      Built against the `GET /courses/:id/chunks/:chunkId` contract (mocked in tests).
+- [x] C4 — Amber refusal card (book icon + "Not in your course materials"), distinct from
+      the red error card (Retry); connection-lost + rate-limit (FR-30-ready) states.
+- [x] C5 — Low-data toggle (localStorage, default on) → `?lowData=1`; session data meter
+      (answers / sources / app). Mobile-first, 320 px, 44 px targets. *Not yet profiled
+      on a real low-end Android device (see follow-ups / D3).*
+- [ ] C6 — Thumbs up/down + optional "What was wrong?" note **UI done, client-side only**;
+      down-votes are **not logged** until a feedback endpoint exists (FR-16).
+- [x] C7 — First-visit consent screen (pseudonym, 90-day retention, Anthropic + Google,
+      privacy summary) gates the first question; version + timestamp stored on-device.
+      Server-side recording lands with B7 (PR-2).
+
+**Task C follow-ups**
+- [ ] Real student identity/access: the API authorises `X-User-Id` as the course
+      **owner**, so the web proxy sends one `DEMO_USER_ID` for every student. Needs
+      student auth + enrolment-based access (SR-2, PR-1) before the pilot.
+- [ ] Feedback endpoint (FR-16): log votes + notes server-side; wire `useChat` feedback
+      callbacks (TODO in `apps/web/src/hooks/useChat.ts`).
+- [ ] Server-side consent recording with B7 (PR-2); refuse to persist questions without it
+      (TODO in `apps/web/src/lib/consent.ts`).
+- [ ] Full privacy notice (PR-7) to replace the `/privacy` summary page.
+- [ ] Contract gaps: `citations` event carries no filename/title (chips read "Doc 1 · p.3"
+      instead of "L6 · p.3"); no course-metadata endpoint (name/code, doc count, topics
+      for the empty state + refusal "closest topics"); refusal "Tell my lecturer" needs a
+      flag endpoint.
+- [ ] Move the SSE event contract into a shared `packages/*` module (web mirrors it with
+      Zod today; marker regex mirrors `CITATION_RE`).
+- [ ] Brand tokens: canvas-only colours (`--surface-raised`, `--refused-surface`,
+      `--error-text`, …), radii and type sizes are named in `globals.css` but missing from
+      `BRAND.md`; add them + run the WCAG contrast pass (BRAND.md TODO).
+- [ ] Add `apps/web` to `infra/docker-compose.yml`; profile first-load JS on 3G (Zod is
+      ~15 KB gz of the client bundle).
 
 ### D. Observability & limits *(evidence)*
 - [ ] D1 — Per-answer trace: retrieval time, LLM time, tokens, cost (OpenTelemetry) (NFR-6).
@@ -100,7 +137,9 @@ no reranker for MVP; HNSW).
       answer carries valid citations.
 - [x] E3 — Citation-validation test: an answer citing a non-existent chunk fails.
 - [x] E4 — Streaming test (SSE contract).
-- [ ] E5 — Web smoke test (chat renders a streamed answer + citation).
+- [x] E5 — Web smoke test (chat renders a streamed answer + citation): jsdom smoke suite
+      (cited answer, source drawer + 404, refusal, error, connection lost, stop, consent,
+      low-data) plus SSE/citation/reducer/proxy unit tests — 105 web tests.
 - [ ] E6 — CI runs all of the above (builds on M2's E5 pipeline).
 
 ---
