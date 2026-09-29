@@ -4,16 +4,30 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "echo \"apps/web is implemented in Milestone 3 (chat UI)\" && exit 0",
-    "dev": "echo \"apps/web is implemented in Milestone 3 (chat UI)\" && exit 0",
+    "build": "next build",
+    "dev": "next dev --port 3001",
+    "start": "next start --port 3001",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run"
   },
   "dependencies": {
-    "@coursemind/config": "workspace:*"
+    "@next/env": "16.3.7",
+    "next": "16.3.7",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
+    "zod": "^3.24.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "jsdom": "^26.1.0",
+    "tailwindcss": "^4.3.3",
     "vitest": "^2.1.0"
   }
 }
