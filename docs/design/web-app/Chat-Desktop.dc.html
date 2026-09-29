@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Student chat, desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#090E19;color:#F4F5F6;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:#CEC7FB}a:hover{color:#F4F5F6}
+textarea::placeholder{color:#979EA9}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; box-sizing: border-box; display: flex; background: #090E19; color: #F4F5F6; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;">
+  <nav aria-label="Courses and history" style="width: 272px; flex-shrink: 0; box-sizing: border-box; padding: 20px 14px; display: flex; flex-direction: column; gap: 20px; background: #0D1220; border-right: 1px solid #2D304F;">
+    <div style="display: flex; align-items: center; gap: 8px; padding: 0 6px;">
+      <svg width="26" height="26" viewBox="0 0 48 48" aria-hidden="true"><polyline points="39,12 24,4 8,13 8,35 24,44 39,36" fill="none" stroke="#F4F5F6" stroke-width="7"></polyline><polygon points="17,17 22,15 22,33 17,31" fill="#F4F5F6"></polygon><rect x="27" y="18" width="11" height="3" rx="1" fill="#6C51F7"></rect><rect x="27" y="23" width="11" height="3" rx="1" fill="#6C51F7"></rect><rect x="27" y="28" width="11" height="3" rx="1" fill="#6C51F7"></rect></svg>
+      <span style="font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 18px; font-weight: 600;">Course<span style="color: #9B85F9;">Mind</span></span>
+    </div>
+    <button type="button" style="height: 44px; display: flex; align-items: center; gap: 8px; padding: 0 14px; border: 1px solid #2D304F; border-radius: 12px; background: #12172A; color: #F4F5F6; font-size: 14px; font-weight: 600; font-family: inherit;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CEC7FB" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+      New question
+    </button>
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="padding: 0 8px 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #979EA9;">Courses</span>
+      <a href="#csc201" aria-current="page" style="display: flex; align-items: center; justify-content: space-between; min-height: 40px; padding: 0 10px; border-radius: 10px; background: rgba(108, 81, 247, 0.16); color: #F4F5F6; font-size: 14px; font-weight: 600; text-decoration: none;">CSC 201 <span style="font-size: 12px; font-weight: 400; color: #CEC7FB;">14 docs</span></a>
+      <a href="#mth204" style="display: flex; align-items: center; justify-content: space-between; min-height: 40px; padding: 0 10px; border-radius: 10px; color: #F4F5F6; font-size: 14px; text-decoration: none;">MTH 204 <span style="font-size: 12px; color: #979EA9;">9 docs</span></a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1;">
+      <span style="padding: 0 8px 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #979EA9;">Today</span>
+      <a href="#t1" style="min-height: 38px; display: flex; align-items: center; padding: 0 10px; border-radius: 10px; background: #12172A; color: #F4F5F6; font-size: 14px; text-decoration: none;">Stack vs queue</a>
+      <a href="#t2" style="min-height: 38px; display: flex; align-items: center; padding: 0 10px; border-radius: 10px; color: #979EA9; font-size: 14px; text-decoration: none;">Dijkstra's algorithm</a>
+      <span style="padding: 12px 8px 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #979EA9;">Yesterday</span>
+      <a href="#t3" style="min-height: 38px; display: flex; align-items: center; padding: 0 10px; border-radius: 10px; color: #979EA9; font-size: 14px; text-decoration: none;">Binary search complexity</a>
+      <a href="#t4" style="min-height: 38px; display: flex; align-items: center; padding: 0 10px; border-radius: 10px; color: #979EA9; font-size: 14px; text-decoration: none;">Recursion base case</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px; padding: 12px; border: 1px solid #2D304F; border-radius: 12px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+        <span style="display: flex; align-items: center; gap: 6px; color: #979EA9;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#CEC7FB" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 20V14M10 20V9M16 20V4"></path></svg>Data this session</span>
+        <span style="font-weight: 600; font-variant-numeric: tabular-nums;">~38 KB</span>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #979EA9;">
+        <span>anon-7F3K</span>
+        <a href="#settings" style="font-size: 13px;">Settings</a>
+      </div>
+    </div>
+  </nav>
+
+  <main style="flex-grow: 1; display: flex; flex-direction: column; min-width: 0;">
+    <header style="height: 64px; flex-shrink: 0; box-sizing: border-box; padding: 0 28px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid #2D304F;">
+      <h1 style="margin: 0; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 18px; font-weight: 600;">CSC 201 · Data Structures &amp; Algorithms</h1>
+      <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: rgba(108, 81, 247, 0.14); font-size: 12px; color: #CEC7FB;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#CEC7FB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"></path></svg>
+        Answers only from 14 course documents
+      </span>
+    </header>
+
+    <div style="flex-grow: 1; box-sizing: border-box; padding: 28px 40px; display: flex; flex-direction: column; align-items: center; overflow: hidden;">
+      <div style="width: 100%; max-width: 640px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="align-self: flex-end; max-width: 460px; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+          <div style="padding: 10px 16px; background: #262A45; border-radius: 16px 16px 4px 16px; font-size: 15px; line-height: 1.5;">What's the difference between a stack and a queue?</div>
+          <span style="font-size: 12px; color: #979EA9;">10:42 · <a href="#edit" style="font-size: 12px;">Edit</a></span>
+        </div>
+        <article style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><polyline points="39,12 24,4 8,13 8,35 24,44 39,36" fill="none" stroke="#F4F5F6" stroke-width="7"></polyline><rect x="27" y="18" width="11" height="3" rx="1" fill="#6C51F7"></rect><rect x="27" y="23" width="11" height="3" rx="1" fill="#6C51F7"></rect><rect x="27" y="28" width="11" height="3" rx="1" fill="#6C51F7"></rect></svg>
+            <span style="font-size: 13px; font-weight: 600;">Tutor</span>
+            <span style="font-size: 12px; color: #979EA9;">· 10:42 · 3.1 KB · 2 sources</span>
+          </div>
+          <p style="margin: 0; font-size: 16px; line-height: 1.65;"><span style="background: rgba(108, 81, 247, 0.16); border-radius: 4px; box-shadow: 0 0 0 2px rgba(108, 81, 247, 0.16);">A stack is last-in, first-out: the last item you push is the first one you pop.</span> <button type="button" aria-label="Source: Lecture 6, page 3 (open)" aria-expanded="true" style="display: inline-flex; align-items: center; padding: 1px 8px; background: #6C51F7; border: 1px solid #6C51F7; border-radius: 6px; color: #FFFFFF; font-size: 12px; font-weight: 600; font-family: inherit; line-height: 1.5;">Lecture 6 · p.3</button> A queue is first-in, first-out: items leave in the order they arrived. <button type="button" aria-label="Source: Lecture 6, page 7" style="display: inline-flex; align-items: center; padding: 1px 8px; background: rgba(108, 81, 247, 0.18); border: 1px solid rgba(108, 81, 247, 0.5); border-radius: 6px; color: #CEC7FB; font-size: 12px; font-weight: 600; font-family: inherit; line-height: 1.5;">Lecture 6 · p.7</button></p>
+          <p style="margin: 0; font-size: 16px; line-height: 1.65;">Your slides use a pile of plates for a stack and a bank counter line for a queue. <button type="button" aria-label="Source: Week 6 slides, slide 12" style="display: inline-flex; align-items: center; padding: 1px 8px; background: rgba(108, 81, 247, 0.18); border: 1px solid rgba(108, 81, 247, 0.5); border-radius: 6px; color: #CEC7FB; font-size: 12px; font-weight: 600; font-family: inherit; line-height: 1.5;">Week 6 slides · s.12</button></p>
+          <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 4px;">
+            <div style="display: flex; align-items: center; gap: 2px; margin-left: -10px;">
+              <button type="button" aria-label="Copy answer" style="width: 40px; height: 40px; border: 0; background: transparent; border-radius: 10px; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#979EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg></button>
+              <button type="button" aria-label="Helpful" aria-pressed="true" style="width: 40px; height: 40px; border: 0; background: rgba(108, 81, 247, 0.16); border-radius: 10px; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#CEC7FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v11H4V10zM7 10l4-7a2 2 0 0 1 3 2l-1 4h6a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 17.6 21H7"></path></svg></button>
+              <button type="button" aria-label="Not helpful" aria-pressed="false" style="width: 40px; height: 40px; border: 0; background: transparent; border-radius: 10px; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#979EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 14V3h3v11zM17 14l-4 7a2 2 0 0 1-3-2l1-4H5a2 2 0 0 1-2-2.3l1.4-8A2 2 0 0 1 6.4 3H17"></path></svg></button>
+              <button type="button" aria-label="Regenerate answer" style="width: 40px; height: 40px; border: 0; background: transparent; border-radius: 10px; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#979EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"></path><path d="M21 3v5h-5"></path></svg></button>
+            </div>
+            <span style="font-size: 12px; color: #979EA9;">Thanks, noted.</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <button type="button" style="height: 36px; padding: 0 12px; border: 1px solid #2D304F; border-radius: 999px; background: transparent; color: #F4F5F6; font-size: 13px; font-family: inherit;">Which one does recursion use?</button>
+            <button type="button" style="height: 36px; padding: 0 12px; border: 1px solid #2D304F; border-radius: 999px; background: transparent; color: #F4F5F6; font-size: 13px; font-family: inherit;">Show me push and pop step by step</button>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div style="flex-shrink: 0; box-sizing: border-box; padding: 12px 40px 20px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+      <div style="width: 100%; max-width: 640px; display: flex; align-items: flex-end; gap: 8px; padding: 6px 6px 6px 16px; background: #12172A; border: 1px solid #2D304F; border-radius: 16px;">
+        <textarea rows="1" aria-label="Ask a question about CSC 201" placeholder="Ask about CSC 201…" style="flex-grow: 1; resize: none; min-height: 44px; box-sizing: border-box; padding: 11px 0; background: transparent; border: 0; outline: none; color: #F4F5F6; font-size: 16px; font-family: inherit; line-height: 1.4;"></textarea>
+        <button type="button" aria-label="Send" disabled="disabled" style="flex-shrink: 0; width: 44px; height: 44px; border: 0; border-radius: 12px; background: #262A45; display: flex; align-items: center; justify-content: center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#979EA9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"></path></svg>
+        </button>
+      </div>
+      <span style="font-size: 12px; color: #979EA9;"><kbd style="font-family: inherit; padding: 1px 5px; border: 1px solid #2D304F; border-radius: 4px;">Enter</kbd> to send · <kbd style="font-family: inherit; padding: 1px 5px; border: 1px solid #2D304F; border-radius: 4px;">Shift</kbd> + <kbd style="font-family: inherit; padding: 1px 5px; border: 1px solid #2D304F; border-radius: 4px;">Enter</kbd> for a new line</span>
+    </div>
+  </main>
+
+  <aside aria-label="Source: Lecture 6, page 3" style="width: 420px; flex-shrink: 0; box-sizing: border-box; display: flex; flex-direction: column; background: #12172A; border-left: 1px solid #2D304F;">
+    <div style="height: 64px; flex-shrink: 0; box-sizing: border-box; padding: 0 10px 0 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #2D304F;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CEC7FB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg>
+      <div style="flex-grow: 1; display: flex; flex-direction: column;">
+        <span style="font-size: 14px; font-weight: 600;">Lecture 6: Stacks &amp; Queues</span>
+        <span style="font-size: 12px; color: #979EA9;">Page 3 of 18</span>
+      </div>
+      <button type="button" aria-label="Close source" style="width: 40px; height: 40px; border: 0; border-radius: 10px; background: transparent; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F4F5F6" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </div>
+    <div style="flex-grow: 1; box-sizing: border-box; padding: 24px; display: flex; flex-direction: column; gap: 14px; overflow: hidden; font-family: Georgia, 'Times New Roman', serif; font-size: 16px; line-height: 1.7; color: #C9CDD4;">
+      <span style="font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #979EA9;">6.1 The stack ADT</span>
+      <p style="margin: 0;">A stack is an ordered collection in which insertion and removal happen at the same end, called the top.</p>
+      <p style="margin: 0; padding: 10px 12px; border-radius: 8px; background: rgba(108, 81, 247, 0.2); color: #F4F5F6; box-shadow: inset 0 0 0 1px rgba(155, 133, 249, 0.55);"><mark style="background: transparent; color: inherit;">The element added last is the first to be removed. For this reason a stack is described as last-in, first-out (LIFO).</mark></p>
+      <p style="margin: 0;">The two core operations are push, which places an element on the top, and pop, which removes the element on the top and returns it.</p>
+      <p style="margin: 0;">A third operation, peek, returns the top element without removing it.</p>
+    </div>
+    <div style="flex-shrink: 0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 8px; border-top: 1px solid #2D304F; font-size: 13px;">
+      <span style="color: #979EA9;">Text only · 1.2 KB</span>
+      <button type="button" style="height: 36px; padding: 0 12px; border: 1px solid #2D304F; border-radius: 8px; background: transparent; color: #CEC7FB; font-size: 13px; font-family: inherit;">Show page image · 84 KB</button>
+    </div>
+  </aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

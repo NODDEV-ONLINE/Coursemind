@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chat, empty state</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#090E19;color:#F4F5F6;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:#CEC7FB}a:hover{color:#F4F5F6}
+textarea::placeholder{color:#979EA9}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #090E19; color: #F4F5F6; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;">
+  <header style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 8px; display: flex; align-items: center; gap: 4px; border-bottom: 1px solid #2D304F;">
+    <button type="button" aria-label="Open menu" style="width: 44px; height: 44px; border: 0; background: transparent; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F4F5F6" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>
+    </button>
+    <div style="flex-grow: 1; display: flex; flex-direction: column; min-width: 0;">
+      <span style="font-size: 15px; font-weight: 600;">CSC 201</span>
+      <span style="font-size: 12px; color: #979EA9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Data Structures &amp; Algorithms</span>
+    </div>
+    <span aria-label="Data used this session: 11 kilobytes" style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 9px; border: 1px solid #2D304F; border-radius: 999px; font-size: 12px; color: #979EA9; font-variant-numeric: tabular-nums;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#CEC7FB" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 20V14M10 20V9M16 20V4"></path></svg>
+      11 KB
+    </span>
+    <button type="button" aria-label="Settings" style="width: 44px; height: 44px; border: 0; background: transparent; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F4F5F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path></svg>
+    </button>
+  </header>
+
+  <main style="flex-grow: 1; box-sizing: border-box; padding: 32px 20px 16px; display: flex; flex-direction: column; gap: 24px; overflow: hidden;">
+    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 12px;">
+      <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true"><polyline points="39,12 24,4 8,13 8,35 24,44 39,36" fill="none" stroke="#F4F5F6" stroke-width="7"></polyline><polygon points="17,17 22,15 22,33 17,31" fill="#F4F5F6"></polygon><rect x="27" y="18" width="11" height="3" rx="1" fill="#6C51F7"></rect><rect x="27" y="23" width="11" height="3" rx="1" fill="#6C51F7"></rect><rect x="27" y="28" width="11" height="3" rx="1" fill="#6C51F7"></rect></svg>
+      <h1 style="margin: 0; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 26px; line-height: 1.15; font-weight: 600; letter-spacing: -0.02em;">What do you want to understand in CSC 201?</h1>
+      <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #979EA9;">I answer only from your 14 course documents, and show you the page for every claim.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #979EA9;">Try asking</span>
+      <button type="button" style="min-height: 48px; box-sizing: border-box; padding: 12px 14px; text-align: left; background: #12172A; border: 1px solid #2D304F; border-radius: 12px; color: #F4F5F6; font-size: 15px; font-family: inherit; line-height: 1.35;">What's the difference between a stack and a queue?</button>
+      <button type="button" style="min-height: 48px; box-sizing: border-box; padding: 12px 14px; text-align: left; background: #12172A; border: 1px solid #2D304F; border-radius: 12px; color: #F4F5F6; font-size: 15px; font-family: inherit; line-height: 1.35;">Why is binary search O(log n)?</button>
+      <button type="button" style="min-height: 48px; box-sizing: border-box; padding: 12px 14px; text-align: left; background: #12172A; border: 1px solid #2D304F; border-radius: 12px; color: #F4F5F6; font-size: 15px; font-family: inherit; line-height: 1.35;">Walk me through inserting into a linked list</button>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #979EA9;">Your course covers</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+        <span style="padding: 6px 10px; border: 1px solid #2D304F; border-radius: 999px; font-size: 13px; color: #CEC7FB;">Arrays</span>
+        <span style="padding: 6px 10px; border: 1px solid #2D304F; border-radius: 999px; font-size: 13px; color: #CEC7FB;">Linked lists</span>
+        <span style="padding: 6px 10px; border: 1px solid #2D304F; border-radius: 999px; font-size: 13px; color: #CEC7FB;">Stacks &amp; queues</span>
+        <span style="padding: 6px 10px; border: 1px solid #2D304F; border-radius: 999px; font-size: 13px; color: #CEC7FB;">Recursion</span>
+        <span style="padding: 6px 10px; border: 1px solid #2D304F; border-radius: 999px; font-size: 13px; color: #CEC7FB;">Sorting</span>
+        <span style="padding: 6px 10px; border: 1px solid #2D304F; border-radius: 999px; font-size: 13px; color: #CEC7FB;">Trees</span>
+        <span style="padding: 6px 10px; border: 1px solid #2D304F; border-radius: 999px; font-size: 13px; color: #CEC7FB;">Big-O</span>
+      </div>
+    </div>
+  </main>
+
+  <div style="flex-shrink: 0; box-sizing: border-box; padding: 10px 12px 14px; border-top: 1px solid #2D304F; display: flex; flex-direction: column; gap: 8px;">
+    <div style="display: flex; align-items: flex-end; gap: 8px; padding: 6px 6px 6px 14px; background: #12172A; border: 1px solid #2D304F; border-radius: 16px;">
+      <textarea rows="1" aria-label="Ask a question about CSC 201" placeholder="Ask about CSC 201…" style="flex-grow: 1; resize: none; min-height: 44px; box-sizing: border-box; padding: 11px 0; background: transparent; border: 0; outline: none; color: #F4F5F6; font-size: 16px; font-family: inherit; line-height: 1.4;"></textarea>
+      <button type="button" aria-label="Send" disabled="disabled" style="flex-shrink: 0; width: 44px; height: 44px; border: 0; border-radius: 12px; background: #262A45; display: flex; align-items: center; justify-content: center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#979EA9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"></path></svg>
+      </button>
+    </div>
+    <span style="font-size: 12px; color: #979EA9; text-align: center;">Answers come only from your course materials.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
